@@ -2,17 +2,30 @@ import React, { Component } from "react";
 import Button from './Button';
 
 class Navigation extends React.Component {
+
+    constructor (props) {
+        super(props);
+        this.state = {isMobile: false}
+    }
     render () {
-        return (
-            <nav>
-				<Button></Button>
-                <Button></Button>
-                <Button></Button>
-                <Button></Button>
-                <Button></Button>
-                <Button></Button>
-			</nav>
-        );
+        const isMobile = this.state.isMobile;
+        const menuItems = this.props.menuItems;
+        const buttons = menuItems.map((menuItem) => 
+            <Button key={menuItem.id} name={menuItem.name} />
+    
+    );
+        if (!isMobile) {
+            return (
+                <nav>
+                    {buttons}
+                </nav>
+            );
+        } else {
+            return (
+                <div>Hamburgerbutton</div>
+            );
+        }
+        
     }
 }
 
