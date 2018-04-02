@@ -11,7 +11,7 @@ class Navigation extends React.Component {
         const isMobile = this.state.isMobile;
         const menuItems = this.props.menuItems;
         const buttons = menuItems.map((menuItem) => 
-            <Button key={menuItem.id} name={menuItem.name} />
+            <Button key={menuItem.id} name={menuItem.name} href={menuItem.href} />
     
     );
         if (!isMobile) {
