@@ -4,14 +4,13 @@ import './App.css';
 import Header from './Header';
 import Navigation from './Navigation';
 import Footer from './Footer';
-import Content from './Content';
 import Home from './Home';
+import Page from './Page';
 
 class App extends Component {
   render() {
-    let pages = pagesData.map((page) => 
-  <Content key={page.id} href={page.href} data={page.data} />);
-    console.log(pages);
+    const pages = pagesData.map((page) => 
+      <Route key={page.id} path={page.href} render={props => (<Page {...props} data={page.data}></Page>)}></Route>);
     return (
       <BrowserRouter>
         <div className="App">
@@ -50,24 +49,26 @@ const pagesData = [
       <p>W ramach gabinetu prywatnego prowadzę terapię EEG Biofeedback, która jest świetnym narzędziem wspomagającym terapię indywidualną pacjentów w wielu zaburzeniach.  <a href="#biofeedback">Więcej o biofeedbacku …..</a></p>
       <p>W prowadzonej terapii korzystam z narzędzi i podejść różnych szkół psychoterapii (systemowa, poznawczo-behawioralna, psychodynamiczna), tak by jak najlepiej dobrać je do konkretnego problemu z jakim przychodzi pacjent do gabinetu.</p>
       <p>Jako psycholog zajmuję się diagnostyką chorób i zaburzeń z jakimi zgłaszają się do gabinetu pacjenci. Po wstępnym badaniu, konsultacjach wspólnie z pacjentem określam plan terapii najbardziej optymalny w konkretnych problemach. Zależy mi na tym, by terapia była konkretna, nastawiona na realizację założonego celu – rozwiązanie problemu, jak najbardziej skuteczna i przeprowadzona w możliwie najkrótszym czasie.</p>
-      <p>Niektóre kursy i szkolenia:</p>
-      <ul>
-        <li>Studium terapii Dzieci i młodzieży – Dolnośląskie Centrum Psychoterapii we Wrocławiu (2017)</li>
-        <li>Szkolenie certyfikacyjne EEG Biofeedback I stopień – Fundacja Promyk Słońca we Wrocławiu (2017)</li>
-        <li>Neuropsychologiczna diagnoza procesów otępiennych – Wrocławskie Centrum Alzheimerowskie (2017)</li>
-        <li>Uzależnienia behawioralne – Stowarzyszenie Karan we Wrocławiu (2017)</li>
-        <li>Wybrane metody diagnozy w praktyce psychologicznej – Uniwersytet SWPS (2016)</li>
-        <li>Techniki relaksacji w pracy z dziećmi i młodzieżą - Dolnośląskie Centrum Psychoterapii we Wrocławiu (2016)</li>
-        <li>Rozwiązywanie konfliktów uczeń-nauczyciel, problemy wychowawcze - Europejski Fundusz Społeczny (2011)</li>
-        <li>Profilaktyka HIV/AIDS i uzależnień - Centrum Doradztwa i Doskonalenia Nauczycieli w Szczecinie (2002)</li>
-      </ul>
+      <div className="card">
+        <p>Niektóre kursy i szkolenia:</p>
+        <ul>
+          <li>Studium terapii Dzieci i młodzieży – Dolnośląskie Centrum Psychoterapii we Wrocławiu (2017)</li>
+          <li>Szkolenie certyfikacyjne EEG Biofeedback I stopień – Fundacja Promyk Słońca we Wrocławiu (2017)</li>
+          <li>Neuropsychologiczna diagnoza procesów otępiennych – Wrocławskie Centrum Alzheimerowskie (2017)</li>
+          <li>Uzależnienia behawioralne – Stowarzyszenie Karan we Wrocławiu (2017)</li>
+          <li>Wybrane metody diagnozy w praktyce psychologicznej – Uniwersytet SWPS (2016)</li>
+          <li>Techniki relaksacji w pracy z dziećmi i młodzieżą - Dolnośląskie Centrum Psychoterapii we Wrocławiu (2016)</li>
+          <li>Rozwiązywanie konfliktów uczeń-nauczyciel, problemy wychowawcze - Europejski Fundusz Społeczny (2011)</li>
+          <li>Profilaktyka HIV/AIDS i uzależnień - Centrum Doradztwa i Doskonalenia Nauczycieli w Szczecinie (2002)</li>
+        </ul>
+      </div>
     </section>
     )},
   {id:2, href:'/artykuły', data:'ZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZ'},
   {id:3, href:'/oferta', data:(
     <section>
 				<h2>Oferta</h2>
-  				<div>
+  				<div className="card">
       			<h4>Dla rodziców</h4>
       			<div>
         			<p>Jeśli Twoje dziecko ...</p>
@@ -83,7 +84,7 @@ const pagesData = [
 							<p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, przeprowadzona zostanie wstępna diagnoza oraz zaplanowana terapia najbardziej optymalna dla Państwa dziecka. W ofercie terapeutycznej polecam trening EEG Biofeedback, który zalecany jest w wielu zaburzeniach wieku dziecięcego oraz okresu dorastania poprawiający między innymi koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
       			</div>
   				</div>
-          <div>
+          <div className="card">
       			<h4>Dla uczniów i studentów</h4>
       			<div>
         			<p>Jeśli ...</p>
@@ -99,7 +100,7 @@ const pagesData = [
 							<p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Ciebie terapię. W razie potrzeby zostanie ona wzbogacona o trening  EEG Biofeedback, który zalecany jest między innymi dla studentów i uczniów – poprawiający koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
       			</div>
   				</div>
-          <div>
+          <div className="card">
       			<h4>Dla biznesu</h4>
       			<div>
         			<p>Jeśli ...</p>
@@ -115,7 +116,7 @@ const pagesData = [
 							<p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Ciebie terapię. W razie potrzeby zostanie ona wzbogacona o trening  EEG Biofeedback, który zalecany jest między innymi dla osób pracujących w biznesie, w stresujących warunkach – poprawiający koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
       			</div>
   				</div>
-  				<div>
+  				<div className="card">
       			<h4>Dla Seniorów</h4>
       			<div>
         			<p>Jeśli ...</p>
@@ -129,7 +130,7 @@ const pagesData = [
 							<p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Ciebie terapię. W razie potrzeby zostanie ona wzbogacona o trening EEG Biofeedback, który zalecany jest między innymi dla osób po udarach i urazach głowy, w podeszłym wieku, w chorobach degeneracyjnych mózgu – poprawiający pamięć i koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
       			</div>
   				</div>
-          <div>
+          <div className="card">
       			<h4>Dla osób w potrzebie</h4>
       			<div>
         			<p>Jeśli ...</p>
@@ -151,7 +152,7 @@ const pagesData = [
 							<p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Ciebie terapię. W razie potrzeby zostanie ona wzbogacona o trening EEG Biofeedback, który zalecany jest między innymi dla osób znajdujących się w szczególnych potrzebach – poprawiający koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
       			</div>
   				</div>
-  				<div>
+  				<div className="card">
       			<h4>Dla Par</h4>
       			<div>
         			<p>Jeśli ...</p>
@@ -170,28 +171,30 @@ const pagesData = [
 			</section>
     )},
   {id:4, href:'/cennik', data:(
-    <section >
+    <section>
 				<div>
 					<h2>Cennik</h2>
 				</div>
-				<div>
-          <div>
-					  <h4>Konsultacja, poradnictwo, terapia indywidualna par</h4>
-					</div>
-          <div>
-						<h4>Pojedyncza sesja (ok. 50 minut) – 100 zł</h4>
-						<h4>Karnet na 10 spotkań – 900 zł <small>Oszczędzasz 10%!</small></h4>
-					</div>
-				</div>
-				<div>
-					<div>
-						<h4>Terapia EEG Biofeedback</h4>
-					</div>
-					<div>
-						<h4>Pojedyncza sesja (ok. 45 minut) – 70 zł</h4>      
-						<h4>Karnet na 10 spotkań – 600 zł <small>Oszczędzasz 14%!</small></h4>
-					</div>
-				</div>
+        <div className="column">
+          <div className="column card">
+            <div>
+              <h4>Konsultacja, poradnictwo, terapia indywidualna par</h4>
+            </div>
+            <div>
+              <h4>Pojedyncza sesja (ok. 50 minut) – 100 zł</h4>
+              <h4>Karnet na 10 spotkań – 900 zł <small>Oszczędzasz 10%!</small></h4>
+            </div>
+          </div>
+          <div className="column card">
+            <div>
+              <h4>Terapia EEG Biofeedback</h4>
+            </div>
+            <div>
+              <h4>Pojedyncza sesja (ok. 45 minut) – 70 zł</h4>      
+              <h4>Karnet na 10 spotkań – 600 zł <small>Oszczędzasz 14%!</small></h4>
+            </div>
+          </div>
+        </div>
 			</section>
     )},
   {id:5, href:'/biofeedback', data:(
@@ -209,33 +212,33 @@ const pagesData = [
         <li>wypaleniu zawodowym, uzależnieniach, zaburzeniach samooceny</li>
         <li>podwyższeniu aktywności poznawczej i możliwości intelektualnych u uczniów i studentów w czasie przygotowań do egzaminów</li>
       </ul>
-      <p>Biofeedback:</p>
-      <ul>
-        <li>Poprawia kondycję umysłową</li>
-        <li>Doskonali koncentrację</li>
-        <li>Usprawnia zdolności zapamiętywania</li>
-        <li>Zwiększa kreatywność</li>
-        <li>Wycisza i relaksuje</li>
-      </ul>
+      <div className="card">
+        <p>Biofeedback:</p>
+        <ul>
+          <li>Poprawia kondycję umysłową</li>
+          <li>Doskonali koncentrację</li>
+          <li>Usprawnia zdolności zapamiętywania</li>
+          <li>Zwiększa kreatywność</li>
+          <li>Wycisza i relaksuje</li>
+        </ul>
+      </div>
       <p>Pojedyncza sesja terapeutyczna przy pomocy biofeedbacku trwa ok. 45 minut. Jej efektywność uzależniona jest od predyspozycji i zaangażowania pacjenta w terapie oraz od dysfunkcji z jaką zgłasza się do psychologa. </p>
     </section>
     )},
   {id:6, href:'/kontakt', data:(
     <section>
 				<h2>Umów się na wizytę już dziś!</h2>
-				<div>
-					<h3>Dane kontaktowe</h3>
-					<h3>Dojazd</h3>
-				</div>
-				<div>
-					<div>
+				<div className="row">
+					<div className="column">
+            <h3>Dane kontaktowe</h3>
 						<h5>Gabinet Psychologiczny<br/>Diagnoza & Terapia</h5>
 						<address>ul. Szpitalna 11<br/>II piętro (budynek przychodni)<br/>74-320 Barlinek</address>
             <a href="tel:+48669320057">669 320 057</a>
 					  <a href="mailto:agakomorowska@wp.pl">agakomorowska@wp.pl</a>
 					</div>
-					<div>
-						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2401.275567195343!2d15.221104615862338!3d52.99742930848935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47072e68283e2315%3A0x773b7800c747fe96!2sSzpitalna+11%2C+74-320+Barlinek!5e0!3m2!1spl!2spl!4v1495149935883" height="300" frameborder="0" style={{border: 0}} allowfullscreen></iframe>
+					<div className="column">
+            <h3>Dojazd</h3>
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2401.275567195343!2d15.221104615862338!3d52.99742930848935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47072e68283e2315%3A0x773b7800c747fe96!2sSzpitalna+11%2C+74-320+Barlinek!5e0!3m2!1spl!2spl!4v1495149935883" title="Dojazd" frameBorder="0" width="300" height="300" style={{border: 0}} allowFullScreen></iframe>
 					</div>
 				</div>
 			</section>

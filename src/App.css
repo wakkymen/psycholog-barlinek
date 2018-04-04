@@ -23,7 +23,7 @@ body {
 
 @media (min-width:900px) {
   .App {
-    width: 820px;
+    width: 900px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -31,7 +31,7 @@ body {
 
 @media (min-width:1200px) {
   .App {
-    width: 1120px;
+    width: 1200px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -43,6 +43,7 @@ div#root {
 
 body {
   text-align: center;
+  font-size: 1,2em;
   background-image: url('fotele.JPG');
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -146,7 +147,40 @@ h1 small {
   font-weight: 400;
 }
 
+section.row, section div.row, div div.row {
+  display: flex;
+  flex-flow: row nowrap;
+}
 
+.row div, .column {
+  flex-grow: 1;
+}
+
+section div.column, div div.column {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+div iframe {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+section h1, section h2, section h3, section h4, section h5, section h6 {
+  text-align: center;
+}
+
+div.card {
+  background-color: rgba(179, 228, 243, 0.3);
+  border-radius: 12px;
+  border: 1px solid rgb(175, 216, 216);
+  padding: 16px;
+  margin-bottom: 30px;
+}
+
+div.card:last-of-type {
+  margin-bottom: 0;
+}
 
 footer {
   background-color: #6DA0A0;
