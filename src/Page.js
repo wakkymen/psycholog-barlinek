@@ -4,9 +4,9 @@ class Page extends React.Component {
     render () {
         const data = this.props.data;
         return (
-            <section>
+            <div>
             {data}
-            </section>
+            </div>
         );
     }
 }
