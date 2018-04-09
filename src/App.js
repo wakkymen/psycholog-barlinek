@@ -20,9 +20,9 @@ class App extends Component {
 
           <Switch>
             <Route exact path='/' component={Home} />
-            <div>
+            <React.Fragment>
               {pages}
-            </div>
+            </React.Fragment>
           </Switch>
           <Footer />
         </div>
