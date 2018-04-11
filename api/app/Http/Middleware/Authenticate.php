@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Factory as Auth;
+use App\User;
 
 class Authenticate
 {
@@ -36,7 +37,21 @@ class Authenticate
     public function handle($request, Closure $next, $guard = null)
     {
         if ($this->auth->guard($guard)->guest()) {
-            return response('Unauthorized.', 401);
+            if ($request->has('api_token')) {
+                try {
+                    $token = $request->input('api_token');
+                    $check_token = User::where('api_token', $token)->first();
+                        if ($check_token) {
+                            return response()->json(['succes' => false], 401);
+                        }
+                } catch (\Illuminate\Database\QueryException $ex) {
+                    $res['succes'] = false;
+                    $res['message'] = $ex->getMessage();
+                    return response()->json($res, 500);
+                }
+            } else {
+                return response(['succes' => false], 401);
+            }
         }
 
         return $next($request);
