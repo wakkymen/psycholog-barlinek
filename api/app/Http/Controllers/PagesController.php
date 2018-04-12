@@ -51,7 +51,7 @@ class PagesController extends Controller {
             $article = Page::find($id);
             $article->fill($req->all())->save();
             $res['succes'] = true;
-            $res['message'] = 'Article updated';
+            $res['message'] = 'Page updated';
             return response()->json($res, 200);
         } catch (\Illuminate\Database\QueryException $ex) {
             $res['succes'] = false;
