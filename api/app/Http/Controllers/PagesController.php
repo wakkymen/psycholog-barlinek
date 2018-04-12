@@ -17,7 +17,12 @@ class PagesController extends Controller {
     }
 
     public function create(Request $req) {
-        $this->validate($req, []);
+        $this->validate($req, [
+            'name' => 'required',
+            'href' => 'required',
+            'role' => 'required',
+            'content' => 'required'
+        ]);
 
         try {
             $article = Page::create($req->all());
@@ -45,7 +50,12 @@ class PagesController extends Controller {
     }
 
     public function update(Request $req, $id) {
-        $this->validate($req, []);
+        $this->validate($req, [
+            'name' => 'required',
+            'href' => 'required',
+            'role' => 'required',
+            'content' => 'required'
+        ]);
 
         try {
             $article = Page::find($id);

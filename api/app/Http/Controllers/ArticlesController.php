@@ -18,7 +18,11 @@ class ArticlesController extends Controller {
 
     public function create(Request $req) {
 
-        $this->validate($req, []);
+        $this->validate($req, [
+            'title' => 'required',
+            'author' => 'required',
+            'text' => 'required'
+        ]);
 
         try {
             $article = Article::create($req->all());
@@ -46,7 +50,11 @@ class ArticlesController extends Controller {
     }
 
     public function update(Request $req, $id) {
-        $this->validate($req, []);
+        $this->validate($req, [
+            'title' => 'required',
+            'author' => 'required',
+            'text' => 'required'
+        ]);
 
         try {
             $article = Article::find($id);
