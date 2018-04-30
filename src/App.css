@@ -56,8 +56,10 @@ body, h1, h2, h3, h4, h5, h6, a, p, div, article, address {
 }
 
 a {
-	color: gray;
+  color: gray;
+  cursor: pointer;
 }
+
 a, a:hover, a:visited, a:focus {
 	text-decoration: none;
 }
@@ -228,10 +230,28 @@ div.card {
   border: 1px solid rgb(175, 216, 216);
   padding: 16px;
   margin-bottom: 30px;
+  height: 6em;
+  overflow: hidden;
 }
 
 div.card:last-of-type {
   margin-bottom: 0;
+}
+
+div.card div {
+  color: rgba(0,0,0,0.25);
+}
+
+div.card.expanded {
+  height: 100%;
+}
+
+div.card.expanded div {
+  color: black;
+}
+
+div.card a.hidden {
+  display: none;
 }
 
 footer {

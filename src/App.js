@@ -6,6 +6,7 @@ import Navigation from './Navigation';
 import Footer from './Footer';
 import Home from './Home';
 import Page from './Page';
+import Card from './Card';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faEnvelope from '@fortawesome/fontawesome-free-solid/faEnvelope';
 import faHome from '@fortawesome/fontawesome-free-solid/faHome';
@@ -64,106 +65,124 @@ const pagesData = [
   {id:3, href:'/oferta', name:'Oferta', data:(
     <section>
 				<h2>Oferta</h2>
-  				<div className="card">
-      			<h4>Dla rodziców</h4>
-      			<div>
-        			<p>Jeśli Twoje dziecko ...</p>
-							<ul>
-								<li>dziwnie się zachowuje, często jest agresywne, nadruchliwe, niespokojne, a może nieśmiałe, wycofane,</li>
-								<li>rozwija się inaczej niż rówieśnicy, wolniej,</li>
-								<li>zbyt dużo czasu przebywa przy komputerze, gra, ciągle serfuje po Internecie albo pochłonięte jest mediami społecznościowymi,</li>
-								<li>jest smutne, wycofane, nic je nie cieszy, unika kontaktu z innymi, dużo czasu przebywa w samotności,</li>
-								<li>nadmiernie schudło, unika jedzenia,</li>
-								<li>często boi się, ma lęki, fobie,</li>
-								<li>ma niską samoocenę, jest zbyt krytyczne wobec siebie, nie wierzy we własne siły ...</li>
-							</ul>
-							<p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, przeprowadzona zostanie wstępna diagnoza oraz zaplanowana terapia najbardziej optymalna dla Państwa dziecka. W ofercie terapeutycznej polecam trening EEG Biofeedback, który zalecany jest w wielu zaburzeniach wieku dziecięcego oraz okresu dorastania poprawiający między innymi koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
-      			</div>
-  				</div>
-          <div className="card">
-      			<h4>Dla uczniów i studentów</h4>
-      			<div>
-        			<p>Jeśli ...</p>
-							<ul>
-								<li>chcesz poprawić swoją koncentrację i pamięć,</li>
-								<li>masz dużo nauki, przed sobą ważne  egzaminy,</li>
-								<li>brakuje Ci wiary we własne możliwości,</li>
-								<li>masz niską samoocenę,</li>
-								<li>nie dogadujesz się z rodzicami, osobami bliskimi,</li>
-								<li>nie wiesz co dalej wybrać na drodze edukacji, czy zawodowej,</li>
-								<li>jest Ci smutno, nic Ci się nie chce ...</li>
-							</ul>
-							<p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Ciebie terapię. W razie potrzeby zostanie ona wzbogacona o trening  EEG Biofeedback, który zalecany jest między innymi dla studentów i uczniów – poprawiający koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
-      			</div>
-  				</div>
-          <div className="card">
-      			<h4>Dla biznesu</h4>
-      			<div>
-        			<p>Jeśli ...</p>
-							<ul>
-                <li>czujesz się zmęczony pracą i obowiązkami,</li>
-								<li>jesteś wyczerpany, zniechęcony,</li>
-								<li>przytłacza Cię poczucie odpowiedzialności za powierzone zadania,</li>
-								<li>praca nie sprawia Ci radości,</li>
-								<li>masz lęki związane wykonywaniem  obowiązków i powierzonymi zadaniami,</li>
-								<li>nic Ci się nie chce, jesteś smutny, zamartwiasz się,</li>
-								<li>masz kłopoty z pamięcią, koncentracją, snem ...</li>
-							</ul>
-							<p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Ciebie terapię. W razie potrzeby zostanie ona wzbogacona o trening  EEG Biofeedback, który zalecany jest między innymi dla osób pracujących w biznesie, w stresujących warunkach – poprawiający koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
-      			</div>
-  				</div>
-  				<div className="card">
-      			<h4>Dla Seniorów</h4>
-      			<div>
-        			<p>Jeśli ...</p>
-							<ul>
-                <li>masz problemy z pamięcią, koncentracją, orientacją w czasie i przestrzeni,</li>
-								<li>przeszedłeś uraz głowy, udar mózgu lub inne choroby związane z układem nerwowym,</li>
-								<li>gubisz się, np. nie potrafisz znaleźć drogi powrotnej do domu,</li>
-								<li>często zapominasz, nie rozpoznajesz osób i miejsc,</li>
-								<li>codzienne czynności sprawiają Ci coraz większą trudność ...</li>
-							</ul>
-							<p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Ciebie terapię. W razie potrzeby zostanie ona wzbogacona o trening EEG Biofeedback, który zalecany jest między innymi dla osób po udarach i urazach głowy, w podeszłym wieku, w chorobach degeneracyjnych mózgu – poprawiający pamięć i koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
-      			</div>
-  				</div>
-          <div className="card">
-      			<h4>Dla osób w potrzebie</h4>
-      			<div>
-        			<p>Jeśli ...</p>
-							<ul>
-                <li>jesteś smutny, przygnębiony, nic Cię nie cieszy,</li>
-								<li>straciłeś zainteresowanie sprawami codziennymi,</li>
-								<li>przez większość dnia nie wychodzisz z domu, unikasz kontaktu z ludźmi, </li>
-								<li>nie wierzysz we własne siły i możliwości,</li>
-								<li>masz problemy ze snem,</li>
-								<li>straciłeś kogoś bliskiego, jesteś w okresie żałoby,</li>
-								<li>płaczesz bez powodu,</li>
-								<li>bywa, że jesteś agresywny zupełnie bez powodu,</li>
-								<li>masz duże wahania nastroju,</li>
-								<li>często nadmiernie boisz się, masz lęki, fobie,</li>
-								<li>żyjesz w ciągłym stresie, nie potrafisz odpoczywać, relaksować się</li>
-								<li>wydarzyło się coś nagłego, trudnego z czym sobie nie radzisz,</li>
-								<li>jesteś samotny, Twoje życie utraciło sens ...</li>
-							</ul>
-							<p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Ciebie terapię. W razie potrzeby zostanie ona wzbogacona o trening EEG Biofeedback, który zalecany jest między innymi dla osób znajdujących się w szczególnych potrzebach – poprawiający koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
-      			</div>
-  				</div>
-  				<div className="card">
-      			<h4>Dla Par</h4>
-      			<div>
-        			<p>Jeśli ...</p>
-							<ul>
-                <li>wasz związek, małżeństwo przechodzi kryzys,</li>
-								<li>nie możecie się dogadać,</li>
-								<li>każdy z Was ma odmienny punkt widzenia,</li>
-								<li>wzajemna miłość, fascynacja, zainteresowanie przygasło,</li>
-								<li>coraz więcej czasu spędzacie osobno,</li>
-								<li>wydarzyło się coś co Was poróżniło,</li>
-								<li>chcecie zacząć od nowa, a nie wiecie jak ...</li>
-							</ul>
-							<p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad Waszym problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Was terapię.<br/>Serdecznie zapraszam</p>
-      			</div>
-  				</div>
+          <Card render={({isToggled, handleClick}) => (
+            <div className={isToggled ? "card expanded" : "card"}>
+      			  <h4>Dla rodziców</h4>
+              <a className={isToggled ? "hidden" : ""} onClick={handleClick}>Czytaj dalej...</a>
+      			  <div>
+        			  <p>Jeśli Twoje dziecko...</p>
+							  <ul>
+								  <li>dziwnie się zachowuje, często jest agresywne, nadruchliwe, niespokojne, a może nieśmiałe, wycofane,</li>
+								  <li>rozwija się inaczej niż rówieśnicy, wolniej,</li>
+								  <li>zbyt dużo czasu przebywa przy komputerze, gra, ciągle serfuje po Internecie albo pochłonięte jest mediami społecznościowymi,</li>
+								  <li>jest smutne, wycofane, nic je nie cieszy, unika kontaktu z innymi, dużo czasu przebywa w samotności,</li>
+								  <li>nadmiernie schudło, unika jedzenia,</li>
+								  <li>często boi się, ma lęki, fobie,</li>
+								  <li>ma niską samoocenę, jest zbyt krytyczne wobec siebie, nie wierzy we własne siły ...</li>
+							  </ul>
+							  <p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, przeprowadzona zostanie wstępna diagnoza oraz zaplanowana terapia najbardziej optymalna dla Państwa dziecka. W ofercie terapeutycznej polecam trening EEG Biofeedback, który zalecany jest w wielu zaburzeniach wieku dziecięcego oraz okresu dorastania poprawiający między innymi koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
+      			  </div>
+  				  </div>
+          )}/>
+  				<Card render={({isToggled, handleClick}) => (
+            <div className={isToggled ? "card expanded" : "card"}>
+      			  <h4>Dla uczniów i studentów</h4>
+              <a className={isToggled ? "hidden" : ""} onClick={handleClick}>Czytaj dalej...</a>
+      			  <div>
+        			  <p>Jeśli...</p>
+							  <ul>
+                  <li>chcesz poprawić swoją koncentrację i pamięć,</li>
+                  <li>masz dużo nauki, przed sobą ważne  egzaminy,</li>
+                  <li>brakuje Ci wiary we własne możliwości,</li>
+                  <li>masz niską samoocenę,</li>
+                  <li>nie dogadujesz się z rodzicami, osobami bliskimi,</li>
+                  <li>nie wiesz co dalej wybrać na drodze edukacji, czy zawodowej,</li>
+                  <li>jest Ci smutno, nic Ci się nie chce ...</li>
+                </ul>
+                <p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Ciebie terapię. W razie potrzeby zostanie ona wzbogacona o trening  EEG Biofeedback, który zalecany jest między innymi dla studentów i uczniów – poprawiający koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
+      			  </div>
+  				  </div>
+          )}/>
+          <Card render={({isToggled, handleClick}) => (
+            <div className={isToggled ? "card expanded" : "card"}>
+      			  <h4>Dla biznesu</h4>
+              <a className={isToggled ? "hidden" : ""} onClick={handleClick}>Czytaj dalej...</a>
+      			  <div>
+        			  <p>Jeśli...</p>
+							  <ul>
+                  <li>czujesz się zmęczony pracą i obowiązkami,</li>
+                  <li>jesteś wyczerpany, zniechęcony,</li>
+                  <li>przytłacza Cię poczucie odpowiedzialności za powierzone zadania,</li>
+                  <li>praca nie sprawia Ci radości,</li>
+                  <li>masz lęki związane wykonywaniem  obowiązków i powierzonymi zadaniami,</li>
+                  <li>nic Ci się nie chce, jesteś smutny, zamartwiasz się,</li>
+                  <li>masz kłopoty z pamięcią, koncentracją, snem ...</li>
+                </ul>
+                <p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Ciebie terapię. W razie potrzeby zostanie ona wzbogacona o trening  EEG Biofeedback, który zalecany jest między innymi dla osób pracujących w biznesie, w stresujących warunkach – poprawiający koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
+      			  </div>
+  				  </div>
+          )}/>
+          <Card render={({isToggled, handleClick}) => (
+            <div className={isToggled ? "card expanded" : "card"}>
+      			  <h4>Dla Seniorów</h4>
+              <a className={isToggled ? "hidden" : ""} onClick={handleClick}>Czytaj dalej...</a>
+      			  <div>
+        			  <p>Jeśli...</p>
+							  <ul>
+                  <li>masz problemy z pamięcią, koncentracją, orientacją w czasie i przestrzeni,</li>
+                  <li>przeszedłeś uraz głowy, udar mózgu lub inne choroby związane z układem nerwowym,</li>
+                  <li>gubisz się, np. nie potrafisz znaleźć drogi powrotnej do domu,</li>
+                  <li>często zapominasz, nie rozpoznajesz osób i miejsc,</li>
+                  <li>codzienne czynności sprawiają Ci coraz większą trudność ...</li>
+                </ul>
+                <p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Ciebie terapię. W razie potrzeby zostanie ona wzbogacona o trening EEG Biofeedback, który zalecany jest między innymi dla osób po udarach i urazach głowy, w podeszłym wieku, w chorobach degeneracyjnych mózgu – poprawiający pamięć i koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
+              </div>
+  				  </div>
+          )}/>
+          <Card render={({isToggled, handleClick}) => (
+            <div className={isToggled ? "card expanded" : "card"}>
+      			  <h4>Dla osób w potrzebie</h4>
+              <a className={isToggled ? "hidden" : ""} onClick={handleClick}>Czytaj dalej...</a>
+      			  <div>
+        			  <p>Jeśli...</p>
+							  <ul>
+                  <li>jesteś smutny, przygnębiony, nic Cię nie cieszy,</li>
+                  <li>straciłeś zainteresowanie sprawami codziennymi,</li>
+                  <li>przez większość dnia nie wychodzisz z domu, unikasz kontaktu z ludźmi, </li>
+                  <li>nie wierzysz we własne siły i możliwości,</li>
+                  <li>masz problemy ze snem,</li>
+                  <li>straciłeś kogoś bliskiego, jesteś w okresie żałoby,</li>
+                  <li>płaczesz bez powodu,</li>
+                  <li>bywa, że jesteś agresywny zupełnie bez powodu,</li>
+                  <li>masz duże wahania nastroju,</li>
+                  <li>często nadmiernie boisz się, masz lęki, fobie,</li>
+                  <li>żyjesz w ciągłym stresie, nie potrafisz odpoczywać, relaksować się</li>
+                  <li>wydarzyło się coś nagłego, trudnego z czym sobie nie radzisz,</li>
+                  <li>jesteś samotny, Twoje życie utraciło sens ...</li>
+                </ul>
+                <p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Ciebie terapię. W razie potrzeby zostanie ona wzbogacona o trening EEG Biofeedback, który zalecany jest między innymi dla osób znajdujących się w szczególnych potrzebach – poprawiający koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
+      			  </div>
+  				  </div>
+          )}/>
+          <Card render={({isToggled, handleClick}) => (
+            <div className={isToggled ? "card expanded" : "card"}>
+      			  <h4>Dla Par</h4>
+              <a className={isToggled ? "hidden" : ""} onClick={handleClick}>Czytaj dalej...</a>
+      			  <div>
+        			  <p>Jeśli...</p>
+							  <ul>
+                  <li>wasz związek, małżeństwo przechodzi kryzys,</li>
+                  <li>nie możecie się dogadać,</li>
+                  <li>każdy z Was ma odmienny punkt widzenia,</li>
+                  <li>wzajemna miłość, fascynacja, zainteresowanie przygasło,</li>
+                  <li>coraz więcej czasu spędzacie osobno,</li>
+                  <li>wydarzyło się coś co Was poróżniło,</li>
+                  <li>chcecie zacząć od nowa, a nie wiecie jak ...</li>
+                </ul>
+                <p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad Waszym problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Was terapię.<br/>Serdecznie zapraszam</p>
+      			  </div>
+  				  </div>
+          )}/>
 			</section>
     )},
   {id:4, href:'/cennik', name:'Cennik', data:(
