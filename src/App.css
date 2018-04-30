@@ -43,7 +43,6 @@ div#root {
 
 body {
   text-align: center;
-  font-size: 1,2em;
   background-image: url('fotele.JPG');
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -115,6 +114,25 @@ nav a:hover {
   background-color: rgba(138, 211, 211, 0.8);
 }
 
+.menuWithHamburger {
+  position: fixed;
+  top: 2em;
+  right: 2em;
+  display: block;
+}
+
+.menuWithHamburger a {
+  position: relative;
+  display: block;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.menuWithHamburger a:first-child, .menuWithHamburger a:last-child {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
 .menuWithHamburger div.hidden {
   display: none;
 }
@@ -174,6 +192,25 @@ section.row, section div.row, div div.row {
 section div.column, div div.column {
   display: flex;
   flex-flow: column wrap;
+}
+
+div.contact {
+  flex-grow: 1;
+}
+
+div.contact div {
+  justify-content: center;
+  flex-grow: 0;
+}
+div.contact div address, div.contact div a {
+  flex-grow: 1;
+}
+
+span.icon {
+  display: flex;
+  align-items: center;
+  width: 1.25em;
+  margin-left: 4em;
 }
 
 div iframe {

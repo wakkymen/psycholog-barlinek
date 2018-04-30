@@ -6,6 +6,11 @@ import Navigation from './Navigation';
 import Footer from './Footer';
 import Home from './Home';
 import Page from './Page';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import faEnvelope from '@fortawesome/fontawesome-free-solid/faEnvelope';
+import faHome from '@fortawesome/fontawesome-free-solid/faHome';
+import faPhone from '@fortawesome/fontawesome-free-solid/faPhone';
+
 
 class App extends Component {
   render() {
@@ -16,7 +21,7 @@ class App extends Component {
         <div className="App">
           <Header />
 
-          <Navigation menuItems={items} />
+          <Navigation menuItems={pagesData} />
 
           <Switch>
             <Route exact path='/' component={Home} />
@@ -31,17 +36,8 @@ class App extends Component {
   }
 }
 
-const items = [
-  {id:1, name:'O mnie', href:'/omnie'},
-  {id:2, name:'Artykuły', href:'/artykuły'},
-  {id:3, name:'Oferta', href:'/oferta'},
-  {id:4, name:'Cennik', href:'/cennik'},
-  {id:5, name:'Biofeedback', href:'/biofeedback'},
-  {id:6, name:'Kontakt', href:'/kontakt'}
-];
-
 const pagesData = [
-  {id:1, href:'/omnie', data:(
+  {id:1, href:'/omnie', name:'O mnie', data:(
     <section>
       <h2>Kim jestem?</h2>
       <p>Nazywam się Agnieszka Komorowska, z wykształcenia i zamiłowania jestem psychologiem i socjologiem. Socjologię ukończyłam na Uniwersytecie Szczecińskim, natomiast psychologię na Uniwersytecie SWPS we Wrocławiu. Zdobyte wykształcenie daje mi możliwość szerszego spojrzenia na człowieka znajdującego się w różnych sytuacjach i relacjach społecznych. Ponadto ukończyłam Studium Terapii Dzieci i Młodzieży organizowane przez Dolnośląskie Centrum Psychoterapii we Wrocławiu oraz liczne kursy i szkolenia, które pomogły mi jak najlepiej przygotować się do pracy psychologa – diagnosty i terapeuty.</p>
@@ -64,8 +60,8 @@ const pagesData = [
       </div>
     </section>
     )},
-  {id:2, href:'/artykuły', data:'ZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZ'},
-  {id:3, href:'/oferta', data:(
+  {id:2, href:'/artykuły', name:'Artykuły', data:'ZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZ'},
+  {id:3, href:'/oferta', name:'Oferta', data:(
     <section>
 				<h2>Oferta</h2>
   				<div className="card">
@@ -170,7 +166,7 @@ const pagesData = [
   				</div>
 			</section>
     )},
-  {id:4, href:'/cennik', data:(
+  {id:4, href:'/cennik', name:'Cennik', data:(
     <section>
 				<div>
 					<h2>Cennik</h2>
@@ -197,7 +193,7 @@ const pagesData = [
         </div>
 			</section>
     )},
-  {id:5, href:'/biofeedback', data:(
+  {id:5, href:'/biofeedback', name:'Biofeedback', data:(
     <section>
       <h2>Biofeedback - na czym polega?</h2>
       <p>EEG Biofeedback  to diagnostyczna i terapeutyczna metoda, oparta na anatomicznej i funkcjonalnej plastyczności mózgu, czyli jego zdolności do trwałych przekształceń.  Poprzez specjalnie uwarunkowany i dostosowany do pacjenta trening poprawia efektywność pracy mózgu, wzmacnia kontrolę nad procesami fizjologicznymi zachodzącymi w organizmie, pomaga się zrelaksować, oraz lepiej radzić sobie w sytuacjach trudnych, pobudza kreatywność i pozytywne myślenie, poprawia samoocenę i koncentrację, a przez to szybkość i efektywność uczenia się. Metoda stwarza możliwość korygowania dysfunkcji mózgowych powstałych w wyniku zaburzeń rozwoju mózgu, chorób oraz urazów mózgu. Wpływa korzystnie na zmiany funkcji poznawczych, zachowanie, emocje, reakcje fizjologiczne wykorzystując funkcje bioelektryczne mózgu przez wyuczenie i wzmacnianie nowych zachowań. Mózg zapamiętuje i odtwarza te reakcje, które są nagradzane. Podczas treningu pozytywnie pobudzony mózg dąży do kolejnych nagród optymalizując swoją pracę po przez uczenie się metodą prób i błędów, efektu i nagrody.</p>
@@ -225,16 +221,33 @@ const pagesData = [
       <p>Pojedyncza sesja terapeutyczna przy pomocy biofeedbacku trwa ok. 45 minut. Jej efektywność uzależniona jest od predyspozycji i zaangażowania pacjenta w terapie oraz od dysfunkcji z jaką zgłasza się do psychologa. </p>
     </section>
     )},
-  {id:6, href:'/kontakt', data:(
+  {id:6, href:'/kontakt', name:'Kontakt', data:(
     <section>
 				<h2>Umów się na wizytę już dziś!</h2>
 				<div className="row">
 					<div className="column">
             <h3>Dane kontaktowe</h3>
 						<h5>Gabinet Psychologiczny<br/>Diagnoza & Terapia</h5>
-						<address>ul. Szpitalna 11<br/>II piętro (budynek przychodni)<br/>74-320 Barlinek</address>
-            <a href="tel:+48669320057">669 320 057</a>
-					  <a href="mailto:agakomorowska@wp.pl">agakomorowska@wp.pl</a>
+            <div className="column contact">
+              <div className="row">
+                <span className="icon">
+                  <FontAwesomeIcon icon={faHome} />
+                </span>
+                <address>ul. Szpitalna 11<br/>II piętro (budynek przychodni)<br/>74-320 Barlinek</address>
+              </div>
+              <div className="row">
+                <span className="icon">
+                  <FontAwesomeIcon icon={faPhone} />
+                  </span>
+                <a href="tel:+48669320057">669 320 057</a>
+              </div>
+              <div className="row">                
+                <span className="icon">
+                  <FontAwesomeIcon icon={faEnvelope} />
+                </span>
+                <a href="mailto:agakomorowska@wp.pl">agakomorowska@wp.pl</a>
+              </div>
+            </div>
 					</div>
 					<div className="column">
             <h3>Dojazd</h3>

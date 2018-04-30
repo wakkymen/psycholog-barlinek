@@ -24,7 +24,7 @@ class Navigation extends React.Component {
         return (
             <nav>
                 <MediaQuery maxWidth={899}>
-                    <div className="menuWithHamburger">
+                    <div className="menuWithHamburger column">
                         <Button onClick={this.toggleMenu} name="HamburgerButton"/>
                         <div className={isMenuWithHamburgerVisible ? "visible column" : "hidden column"}>
                             {navButtons}
