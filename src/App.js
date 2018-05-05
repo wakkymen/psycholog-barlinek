@@ -16,7 +16,7 @@ import faPhone from '@fortawesome/fontawesome-free-solid/faPhone';
 class App extends Component {
   render() {
     const pages = pagesData.map((page) => 
-      <Route key={page.id} path={page.href} render={props => (<Page {...props} data={page.data}></Page>)}></Route>);
+      <Route key={page.id} path={page.href} render={props => (<Page {...props} data={page.data}/>)}/>);
     return (
       <BrowserRouter>
         <div className="App">
@@ -25,7 +25,7 @@ class App extends Component {
           <Navigation menuItems={pagesData} />
 
           <Switch>
-            <Route exact path='/' component={Home} />
+            <Route exact path='/' render={props => (<Home {...props} pagesData={pagesData} />)} />
             <React.Fragment>
               {pages}
             </React.Fragment>
@@ -46,7 +46,7 @@ const pagesData = [
       <p>W ramach gabinetu prywatnego prowadzę terapię EEG Biofeedback, która jest świetnym narzędziem wspomagającym terapię indywidualną pacjentów w wielu zaburzeniach.  <a href="#biofeedback">Więcej o biofeedbacku …..</a></p>
       <p>W prowadzonej terapii korzystam z narzędzi i podejść różnych szkół psychoterapii (systemowa, poznawczo-behawioralna, psychodynamiczna), tak by jak najlepiej dobrać je do konkretnego problemu z jakim przychodzi pacjent do gabinetu.</p>
       <p>Jako psycholog zajmuję się diagnostyką chorób i zaburzeń z jakimi zgłaszają się do gabinetu pacjenci. Po wstępnym badaniu, konsultacjach wspólnie z pacjentem określam plan terapii najbardziej optymalny w konkretnych problemach. Zależy mi na tym, by terapia była konkretna, nastawiona na realizację założonego celu – rozwiązanie problemu, jak najbardziej skuteczna i przeprowadzona w możliwie najkrótszym czasie.</p>
-      <div className="card">
+      <div className="card expanded">
         <p>Niektóre kursy i szkolenia:</p>
         <ul>
           <li>Studium terapii Dzieci i młodzieży – Dolnośląskie Centrum Psychoterapii we Wrocławiu (2017)</li>
@@ -61,33 +61,29 @@ const pagesData = [
       </div>
     </section>
     )},
-  {id:2, href:'/artykuły', name:'Artykuły', data:'ZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZZAPYCHACZ'},
+  {id:2, href:'/artykuły', name:'Artykuły', data:(
+  <section>
+    <h2>Artykuły</h2>
+  </section>)},
   {id:3, href:'/oferta', name:'Oferta', data:(
     <section>
 				<h2>Oferta</h2>
-          <Card render={({isToggled, handleClick}) => (
-            <div className={isToggled ? "card expanded" : "card"}>
-      			  <h4>Dla rodziców</h4>
-              <a className={isToggled ? "hidden" : ""} onClick={handleClick}>Czytaj dalej...</a>
-      			  <div>
-        			  <p>Jeśli Twoje dziecko...</p>
-							  <ul>
-								  <li>dziwnie się zachowuje, często jest agresywne, nadruchliwe, niespokojne, a może nieśmiałe, wycofane,</li>
-								  <li>rozwija się inaczej niż rówieśnicy, wolniej,</li>
-								  <li>zbyt dużo czasu przebywa przy komputerze, gra, ciągle serfuje po Internecie albo pochłonięte jest mediami społecznościowymi,</li>
-								  <li>jest smutne, wycofane, nic je nie cieszy, unika kontaktu z innymi, dużo czasu przebywa w samotności,</li>
-								  <li>nadmiernie schudło, unika jedzenia,</li>
-								  <li>często boi się, ma lęki, fobie,</li>
-								  <li>ma niską samoocenę, jest zbyt krytyczne wobec siebie, nie wierzy we własne siły ...</li>
-							  </ul>
-							  <p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, przeprowadzona zostanie wstępna diagnoza oraz zaplanowana terapia najbardziej optymalna dla Państwa dziecka. W ofercie terapeutycznej polecam trening EEG Biofeedback, który zalecany jest w wielu zaburzeniach wieku dziecięcego oraz okresu dorastania poprawiający między innymi koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
-      			  </div>
-  				  </div>
-          )}/>
-  				<Card render={({isToggled, handleClick}) => (
-            <div className={isToggled ? "card expanded" : "card"}>
-      			  <h4>Dla uczniów i studentów</h4>
-              <a className={isToggled ? "hidden" : ""} onClick={handleClick}>Czytaj dalej...</a>
+          <Card title='Dla rodziców'>
+                <div>
+                  <p>Jeśli Twoje dziecko...</p>
+                  <ul>
+                    <li>dziwnie się zachowuje, często jest agresywne, nadruchliwe, niespokojne, a może nieśmiałe, wycofane,</li>
+                    <li>rozwija się inaczej niż rówieśnicy, wolniej,</li>
+                    <li>zbyt dużo czasu przebywa przy komputerze, gra, ciągle serfuje po Internecie albo pochłonięte jest mediami społecznościowymi,</li>
+                    <li>jest smutne, wycofane, nic je nie cieszy, unika kontaktu z innymi, dużo czasu przebywa w samotności,</li>
+                    <li>nadmiernie schudło, unika jedzenia,</li>
+                    <li>często boi się, ma lęki, fobie,</li>
+                    <li>ma niską samoocenę, jest zbyt krytyczne wobec siebie, nie wierzy we własne siły ...</li>
+                  </ul>
+                  <p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, przeprowadzona zostanie wstępna diagnoza oraz zaplanowana terapia najbardziej optymalna dla Państwa dziecka. W ofercie terapeutycznej polecam trening EEG Biofeedback, który zalecany jest w wielu zaburzeniach wieku dziecięcego oraz okresu dorastania poprawiający między innymi koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
+                </div>
+  				  </Card>
+  				<Card title="Dla uczniów i studentów">
       			  <div>
         			  <p>Jeśli...</p>
 							  <ul>
@@ -101,12 +97,8 @@ const pagesData = [
                 </ul>
                 <p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Ciebie terapię. W razie potrzeby zostanie ona wzbogacona o trening  EEG Biofeedback, który zalecany jest między innymi dla studentów i uczniów – poprawiający koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
       			  </div>
-  				  </div>
-          )}/>
-          <Card render={({isToggled, handleClick}) => (
-            <div className={isToggled ? "card expanded" : "card"}>
-      			  <h4>Dla biznesu</h4>
-              <a className={isToggled ? "hidden" : ""} onClick={handleClick}>Czytaj dalej...</a>
+  				  </Card>
+          <Card title="Dla biznesu">
       			  <div>
         			  <p>Jeśli...</p>
 							  <ul>
@@ -120,12 +112,8 @@ const pagesData = [
                 </ul>
                 <p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Ciebie terapię. W razie potrzeby zostanie ona wzbogacona o trening  EEG Biofeedback, który zalecany jest między innymi dla osób pracujących w biznesie, w stresujących warunkach – poprawiający koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
       			  </div>
-  				  </div>
-          )}/>
-          <Card render={({isToggled, handleClick}) => (
-            <div className={isToggled ? "card expanded" : "card"}>
-      			  <h4>Dla Seniorów</h4>
-              <a className={isToggled ? "hidden" : ""} onClick={handleClick}>Czytaj dalej...</a>
+  				  </Card>
+          <Card title="Dla Seniorów">
       			  <div>
         			  <p>Jeśli...</p>
 							  <ul>
@@ -137,12 +125,8 @@ const pagesData = [
                 </ul>
                 <p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Ciebie terapię. W razie potrzeby zostanie ona wzbogacona o trening EEG Biofeedback, który zalecany jest między innymi dla osób po udarach i urazach głowy, w podeszłym wieku, w chorobach degeneracyjnych mózgu – poprawiający pamięć i koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
               </div>
-  				  </div>
-          )}/>
-          <Card render={({isToggled, handleClick}) => (
-            <div className={isToggled ? "card expanded" : "card"}>
-      			  <h4>Dla osób w potrzebie</h4>
-              <a className={isToggled ? "hidden" : ""} onClick={handleClick}>Czytaj dalej...</a>
+  				  </Card>
+          <Card title="Dla osób w potrzebie">
       			  <div>
         			  <p>Jeśli...</p>
 							  <ul>
@@ -162,12 +146,8 @@ const pagesData = [
                 </ul>
                 <p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Ciebie terapię. W razie potrzeby zostanie ona wzbogacona o trening EEG Biofeedback, który zalecany jest między innymi dla osób znajdujących się w szczególnych potrzebach – poprawiający koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
       			  </div>
-  				  </div>
-          )}/>
-          <Card render={({isToggled, handleClick}) => (
-            <div className={isToggled ? "card expanded" : "card"}>
-      			  <h4>Dla Par</h4>
-              <a className={isToggled ? "hidden" : ""} onClick={handleClick}>Czytaj dalej...</a>
+  				  </Card>
+          <Card title="Dla Par">
       			  <div>
         			  <p>Jeśli...</p>
 							  <ul>
@@ -181,8 +161,7 @@ const pagesData = [
                 </ul>
                 <p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad Waszym problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Was terapię.<br/>Serdecznie zapraszam</p>
       			  </div>
-  				  </div>
-          )}/>
+  				  </Card>
 			</section>
     )},
   {id:4, href:'/cennik', name:'Cennik', data:(
@@ -191,7 +170,7 @@ const pagesData = [
 					<h2>Cennik</h2>
 				</div>
         <div className="column">
-          <div className="column card">
+          <div className="column card expanded">
             <div>
               <h4>Konsultacja, poradnictwo, terapia indywidualna par</h4>
             </div>
@@ -200,7 +179,7 @@ const pagesData = [
               <h4>Karnet na 10 spotkań – 900 zł <small>Oszczędzasz 10%!</small></h4>
             </div>
           </div>
-          <div className="column card">
+          <div className="column card expanded">
             <div>
               <h4>Terapia EEG Biofeedback</h4>
             </div>
@@ -227,7 +206,7 @@ const pagesData = [
         <li>wypaleniu zawodowym, uzależnieniach, zaburzeniach samooceny</li>
         <li>podwyższeniu aktywności poznawczej i możliwości intelektualnych u uczniów i studentów w czasie przygotowań do egzaminów</li>
       </ul>
-      <div className="card">
+      <div>
         <p>Biofeedback:</p>
         <ul>
           <li>Poprawia kondycję umysłową</li>

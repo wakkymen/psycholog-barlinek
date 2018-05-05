@@ -120,14 +120,38 @@ nav a:hover {
   position: fixed;
   top: 2em;
   right: 2em;
-  display: block;
+  display: inline-block;
+}
+
+.menuWithHamburger button {
+  cursor: pointer;
+  color: black;
+  background-color: transparent;
+  box-sizing: border-box;
+  padding: 0;
+  border-width: 0;
+  border-style: none;
+  border-color: transparent;
+  border-image: none;
+}
+
+.menuWithHamburger button, .menuWithHamburger button  i {
+  width: 3em;
+  height: 3em;
 }
 
 .menuWithHamburger a {
-  position: relative;
-  display: block;
+  position: absolute;
+  display: inline-block;
   margin-top: 8px;
   margin-bottom: 8px;
+  visibility: hidden;
+  right: 0;
+
+}
+
+.menuWithHamburger .column.expanded a {
+  visibility: visible;
 }
 
 .menuWithHamburger a:first-child, .menuWithHamburger a:last-child {
@@ -212,7 +236,8 @@ span.icon {
   display: flex;
   align-items: center;
   width: 1.25em;
-  margin-left: 4em;
+  margin-left: 5em;
+  margin-right: 1em;
 }
 
 div iframe {
@@ -230,7 +255,6 @@ div.card {
   border: 1px solid rgb(175, 216, 216);
   padding: 16px;
   margin-bottom: 30px;
-  height: 6em;
   overflow: hidden;
 }
 
@@ -242,18 +266,9 @@ div.card div {
   color: rgba(0,0,0,0.25);
 }
 
-div.card.expanded {
-  height: 100%;
-}
-
 div.card.expanded div {
   color: black;
 }
-
-div.card a.hidden {
-  display: none;
-}
-
 footer {
   background-color: #6DA0A0;
   font-size: 75%;
