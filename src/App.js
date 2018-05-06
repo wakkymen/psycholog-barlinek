@@ -222,7 +222,7 @@ const pagesData = [
   {id:6, href:'/kontakt', name:'Kontakt', data:(
     <section>
 				<h2>Umów się na wizytę już dziś!</h2>
-				<div className="column">
+				<div className="rowResponsive">
 					<div className="column">
             <h3>Dane kontaktowe</h3>
 						<h5>Gabinet Psychologiczny<br/>Diagnoza & Terapia</h5>

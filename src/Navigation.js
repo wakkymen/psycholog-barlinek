@@ -2,7 +2,6 @@ import React from "react";
 import MediaQuery from 'react-responsive';
 import { NavLink } from 'react-router-dom';
 import { StaggeredMotion, spring } from 'react-motion';
-import { range } from 'lodash';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faBars from '@fortawesome/fontawesome-free-solid/faBars';
 
@@ -18,43 +17,36 @@ class Navigation extends React.Component {
         this.setState((prevState) => {return {isOpen: !prevState.isOpen}});
     }
 
-    initButtonStyle() {
-        return {
-            width: 105,
-            height: 35,
-            top: 0
-        }
-    }
-
-    finalButtonStyle(index) {
-        return {
-            width: 105,
-            height: 35,
-            top: spring((35 + 16) * index + 35 + 8)
-        }
-    }
-
     render () {
         const navButtons = this.props.menuItems.map((menuItem) => 
             <NavLink key={menuItem.id} to={menuItem.href}>{menuItem.name}</NavLink>
         );
 
-        const startStylesObject = range(navButtons.length).map((i) => {
-            return this.state.isOpen ? this.finalButtonStyle(i) : this.initButtonStyle();
-        });
+        const startStyles = [
+            {top: 0, opacity: 0}, 
+            {top: 0, opacity: 0}, 
+            {top: 0, opacity: 0}, 
+            {top: 0, opacity: 0}, 
+            {top: 0, opacity: 0}, 
+            {top: 0, opacity: 0}];
 
-        const startStyles = Object.keys(startStylesObject).map(key => startStylesObject[key]);
+
+        const finalStyles = startStyles.map((i, key) => {
+            return {top: (35 + 16 + 8) * key + 35, opacity: 1};
+        });
 
         let stylesForNextFrame = prevStyles => prevStyles.map((i, key) => {
-            console.log(i);
-            return this.state.isOpen ? {top: spring((35 + 16 +8) * key + 35)} : {top: 0};
+            const nextTopValue = this.state.isOpen ? spring((35 + 16 +8) * key + 35) : spring(0);
+            const nextOpacity = this.state.isOpen ? spring(1) : spring(0);
+            return {top: nextTopValue, opacity: nextOpacity};
         });
+
         return (
             <nav>
                 <MediaQuery maxWidth={899}>
                     <div className="menuWithHamburger column">
                         <button onClick={this.toggleMenu}><FontAwesomeIcon icon={faBars} size="2x" /></button>
-                        <StaggeredMotion defaultStyles={[{top: 0}, {top: 0}, {top: 0}, {top: 0}, {top: 0}, {top: 0}]} styles={stylesForNextFrame}>
+                        <StaggeredMotion defaultStyles={this.state.isOpen ? finalStyles : startStyles} styles={stylesForNextFrame}>
                             {interpolatingStyles => 
                                 <div className={this.state.isOpen ? "column expanded" : "column"}>
                                 {interpolatingStyles.map((style, i) => {

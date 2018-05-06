@@ -39,8 +39,9 @@ class Card extends React.Component {
 
     render() {
         return (
-            <Motion defaultStyle={{height: this.state.initialHeight}} 
-                style={this.state.shouldAnimate ? {height: spring(this.state.targetHeight)} : {height: this.state.initialHeight}} 
+            <Motion 
+                defaultStyle={{height: this.state.initialHeight}} 
+                style={this.state.shouldAnimate ? {height: spring(this.state.targetHeight), opacity: this.state.isToggled ? spring(1) : spring(0)} : {height: this.state.initialHeight, opacity: this.state.isToggled ? 1 : 0}} 
                 onRest={() => {
                     this.setState((prevState) => {
                         return {
@@ -48,18 +49,19 @@ class Card extends React.Component {
                             initialHeight: prevState.targetHeight
                         };
                     });
-                }}>
-                {interpolatingStyle => <div style={interpolatingStyle} 
+            }}>
+                {interpolatingStyle =>  <div style={{height: interpolatingStyle.height}} 
                                             className={this.state.isToggled ? "card expanded" : "card"} 
                                             ref={(divElement) => this.divElement = divElement}>
-                    <h4>{this.props.title} 
-                        <small>
-                            {this.state.isToggled ? <a onClick={this.handleClickClose}>  Schowaj...</a> : <a onClick={this.handleClickOpen}>  Czytaj dalej...</a>}
-                            
-                        </small>
-                    </h4>
-                    {this.props.children}
-                </div>}
+                                            <h4>{this.props.title} 
+                                                <small>
+                                                    {this.state.isToggled ? <a onClick={this.handleClickClose}>  Schowaj...</a> : <a onClick={this.handleClickOpen}>  Czytaj dalej...</a>}</small>
+                                            </h4>
+
+                                            <div style={{opacity: interpolatingStyle.opacity}}>
+                                                {this.props.children}
+                                            </div>
+                                        </div>}
             </Motion>
         );
     }

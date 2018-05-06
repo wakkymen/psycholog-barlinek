@@ -5,37 +5,7 @@ body {
   height: 100%;
 }
 
-@media (max-width: 500px) {
-  .App {
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-  }
-}
 
-@media (min-width: 600px) {
-  .App {
-    width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-@media (min-width:900px) {
-  .App {
-    width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-@media (min-width:1200px) {
-  .App {
-    width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
 
 div#root {
   height: 100%;
@@ -90,7 +60,7 @@ nav a {
   padding: 1em;
   min-width: 90px;
   flex-grow: 1;
-  background-color: rgba(111, 255, 255, 0.3);
+  background-color: #befbfb;
   color: rgb(71, 71, 71);
   border-radius: 2px;
   display: inline-block;
@@ -113,7 +83,7 @@ nav a:last-child {
 
 nav a:hover {
   box-shadow: 0 17px 20px -9px rgba(0,0,0,0.25);
-  background-color: rgba(138, 211, 211, 0.8);
+  background-color: #9bdada;
 }
 
 .menuWithHamburger {
@@ -133,6 +103,7 @@ nav a:hover {
   border-style: none;
   border-color: transparent;
   border-image: none;
+  z-index: 2;
 }
 
 .menuWithHamburger button, .menuWithHamburger button  i {
@@ -145,13 +116,8 @@ nav a:hover {
   display: inline-block;
   margin-top: 8px;
   margin-bottom: 8px;
-  visibility: hidden;
   right: 0;
-
-}
-
-.menuWithHamburger .column.expanded a {
-  visibility: visible;
+  z-index: 1;
 }
 
 .menuWithHamburger a:first-child, .menuWithHamburger a:last-child {
@@ -209,6 +175,11 @@ h1 small {
 section.row, section div.row, div div.row {
   display: flex;
   flex-flow: row nowrap;
+}
+
+.section.rowResponsive, div.rowResponsive {
+  display: flex;
+  flex-flow: row wrap;
 }
 
 .row div, .column {
@@ -272,9 +243,51 @@ div.card.expanded div {
 footer {
   background-color: #6DA0A0;
   font-size: 75%;
-  flex-direction: row;
+  flex-flow: row wrap;
 }
 
 footer div {
   flex-grow: 1;
+}
+
+@media (max-width: 500px) {
+  .App {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  header, footer, section {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  header {
+    font-size: 0.7em;
+    padding-left: 1em;
+  }
+}
+
+@media (min-width: 600px) {
+  .App {
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width:900px) {
+  .App {
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width:1200px) {
+  .App {
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
