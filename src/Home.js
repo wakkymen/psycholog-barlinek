@@ -1,5 +1,6 @@
 import React from 'react';
 import Page from './Page';
+import PropTypes from 'prop-types';
 
 class Home extends React.Component {
     render () {
@@ -16,6 +17,10 @@ class Home extends React.Component {
             </React.Fragment>
         );
     }
+}
+
+Home.propTypes = {
+    pagesData = PropTypes.array.isRequired
 }
 
 export default Home;

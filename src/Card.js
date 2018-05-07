@@ -1,5 +1,6 @@
 import React from 'react';
 import {Motion, spring} from 'react-motion';
+import PropTypes from 'prop-types';
 
 class Card extends React.Component {
 
@@ -65,6 +66,10 @@ class Card extends React.Component {
             </Motion>
         );
     }
+}
+
+Card.propTypes = {
+    children: PropTypes.element.isRequired
 }
 
 export default Card;
