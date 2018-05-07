@@ -20,7 +20,7 @@ class Home extends React.Component {
 }
 
 Home.propTypes = {
-    pagesData = PropTypes.array.isRequired
+    pagesData: PropTypes.array.isRequired
 }
 
 export default Home;
