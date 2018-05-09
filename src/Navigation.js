@@ -1,8 +1,8 @@
 import React from "react";
 import MediaQuery from 'react-responsive';
 import { NavLink } from 'react-router-dom';
-import NavigationMobile from './NavigationMobile';
 import PropTypes from 'prop-types';
+import NavigationMobileStateWrapper from "./NavigationMobileStateWrapper";
 
 function Navigation(props) {
     const navButtons = props.menuItems.map((menuItem) => 
@@ -12,7 +12,7 @@ function Navigation(props) {
     return (
         <nav>
             <MediaQuery maxWidth={899}>
-                <NavigationMobile buttons={navButtons} />
+                <NavigationMobileStateWrapper buttons={navButtons} />
             </MediaQuery>
             <MediaQuery minWidth={900}>
                 {navButtons}

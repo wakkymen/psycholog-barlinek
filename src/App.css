@@ -106,6 +106,16 @@ nav a:hover {
   z-index: 2;
 }
 
+.menuWithHamburger button svg {
+  filter: drop-shadow(0 5px 3px #000);
+}
+
+.menuWithHamburger button:hover svg {
+  filter: drop-shadow(0 8px 5px #000);
+  width: 110%;
+  height: 110%;
+}
+
 .menuWithHamburger button, .menuWithHamburger button  i {
   width: 3em;
   height: 3em;
@@ -114,15 +124,9 @@ nav a:hover {
 .menuWithHamburger a {
   position: absolute;
   display: inline-block;
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin: 8px 0px 8px 0px;
   right: 0;
   z-index: 1;
-}
-
-.menuWithHamburger a:first-child, .menuWithHamburger a:last-child {
-  margin-left: 2px;
-  margin-right: 2px;
 }
 
 .menuWithHamburger div.hidden {
