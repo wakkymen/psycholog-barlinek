@@ -6,7 +6,7 @@ import Navigation from './Navigation';
 import Footer from './Footer';
 import Home from './Home';
 import Page from './Page';
-import Card from './Card';
+import CardStateWrapper from './CardStateWrapper';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faEnvelope from '@fortawesome/fontawesome-free-solid/faEnvelope';
 import faHome from '@fortawesome/fontawesome-free-solid/faHome';
@@ -22,7 +22,7 @@ class App extends Component {
         <div className="App">
           <Header />
 
-          <Navigation menuItems={pagesData} />
+          <Navigation menuItems={pagesData.map((page) => {return {id: page.id, href: page.href, name: page.name}})} />
 
           <Switch>
             <Route exact path='/' render={props => (<Home {...props} pagesData={pagesData} />)} />
@@ -68,7 +68,7 @@ const pagesData = [
   {id:3, href:'/oferta', name:'Oferta', data:(
     <section>
 				<h2>Oferta</h2>
-          <Card title='Dla rodziców'>
+          <CardStateWrapper title='Dla rodziców'>
                 <div>
                   <p>Jeśli Twoje dziecko...</p>
                   <ul>
@@ -82,8 +82,8 @@ const pagesData = [
                   </ul>
                   <p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, przeprowadzona zostanie wstępna diagnoza oraz zaplanowana terapia najbardziej optymalna dla Państwa dziecka. W ofercie terapeutycznej polecam trening EEG Biofeedback, który zalecany jest w wielu zaburzeniach wieku dziecięcego oraz okresu dorastania poprawiający między innymi koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
                 </div>
-  				  </Card>
-  				<Card title="Dla uczniów i studentów">
+  				  </CardStateWrapper>
+  				<CardStateWrapper title="Dla uczniów i studentów">
       			  <div>
         			  <p>Jeśli...</p>
 							  <ul>
@@ -97,8 +97,8 @@ const pagesData = [
                 </ul>
                 <p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Ciebie terapię. W razie potrzeby zostanie ona wzbogacona o trening  EEG Biofeedback, który zalecany jest między innymi dla studentów i uczniów – poprawiający koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
       			  </div>
-  				  </Card>
-          <Card title="Dla biznesu">
+  				  </CardStateWrapper>
+          <CardStateWrapper title="Dla biznesu">
       			  <div>
         			  <p>Jeśli...</p>
 							  <ul>
@@ -112,8 +112,8 @@ const pagesData = [
                 </ul>
                 <p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Ciebie terapię. W razie potrzeby zostanie ona wzbogacona o trening  EEG Biofeedback, który zalecany jest między innymi dla osób pracujących w biznesie, w stresujących warunkach – poprawiający koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
       			  </div>
-  				  </Card>
-          <Card title="Dla Seniorów">
+  				  </CardStateWrapper>
+          <CardStateWrapper title="Dla Seniorów">
       			  <div>
         			  <p>Jeśli...</p>
 							  <ul>
@@ -125,8 +125,8 @@ const pagesData = [
                 </ul>
                 <p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Ciebie terapię. W razie potrzeby zostanie ona wzbogacona o trening EEG Biofeedback, który zalecany jest między innymi dla osób po udarach i urazach głowy, w podeszłym wieku, w chorobach degeneracyjnych mózgu – poprawiający pamięć i koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
               </div>
-  				  </Card>
-          <Card title="Dla osób w potrzebie">
+  				  </CardStateWrapper>
+          <CardStateWrapper title="Dla osób w potrzebie">
       			  <div>
         			  <p>Jeśli...</p>
 							  <ul>
@@ -146,8 +146,8 @@ const pagesData = [
                 </ul>
                 <p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Ciebie terapię. W razie potrzeby zostanie ona wzbogacona o trening EEG Biofeedback, który zalecany jest między innymi dla osób znajdujących się w szczególnych potrzebach – poprawiający koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
       			  </div>
-  				  </Card>
-          <Card title="Dla Par">
+  				  </CardStateWrapper>
+          <CardStateWrapper title="Dla Par">
       			  <div>
         			  <p>Jeśli...</p>
 							  <ul>
@@ -161,7 +161,7 @@ const pagesData = [
                 </ul>
                 <p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad Waszym problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Was terapię.<br/>Serdecznie zapraszam</p>
       			  </div>
-  				  </Card>
+  				  </CardStateWrapper>
 			</section>
     )},
   {id:4, href:'/cennik', name:'Cennik', data:(

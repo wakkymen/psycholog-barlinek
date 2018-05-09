@@ -22,7 +22,11 @@ function Navigation(props) {
 }
 
 Navigation.propTypes = {
-    menuItems: PropTypes.array.isRequired
+    menuItems: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired, 
+        name: PropTypes.string.isRequired,
+        href: PropTypes.string.isRequired,
+    })).isRequired
 }
 
 export default Navigation;
