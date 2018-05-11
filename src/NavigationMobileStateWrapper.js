@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import NavigationMobile from "./NavigationMobile";
 import { spring } from 'react-motion';
 
-
+/**
+ * Wrapper component for mobile navigation managing the state of mobile nav, especially animations.
+ */
 class NavigationMobileStateWrapper extends React.Component {
     constructor(props) {
         super(props);

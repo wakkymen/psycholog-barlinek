@@ -1,16 +1,20 @@
 import React from "react";
 
-function Footer(props) {
-	return (
-		<footer>
-			<div>
+/**
+ * Decorational layout component rendering footer.
+ */
+
+function Footer() {
+  return (
+    <footer>
+      <div>
 				2017 Copyright by Gabinet Psychologiczny Diagnoza & Terapia Agnieszka Komorowska
-			</div>
-			<div>
+      </div>
+      <div>
 				Designed by <a href="mailto:kkomorowski@outlook.com">Kacper Komorowski</a>
-			</div>
-		</footer>
-	);
+      </div>
+    </footer>
+  );
 }
 
 export default Footer;
