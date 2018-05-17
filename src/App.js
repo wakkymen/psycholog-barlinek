@@ -11,21 +11,38 @@ import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 import faEnvelope from "@fortawesome/fontawesome-free-solid/faEnvelope";
 import faHome from "@fortawesome/fontawesome-free-solid/faHome";
 import faPhone from "@fortawesome/fontawesome-free-solid/faPhone";
+import {jsonToJsx, jsxToJson} from "./jsx-json/jsxToJson";
 
+const componentStore = {
+  cardStateWrapper: CardStateWrapper,
+  fontAwesomeIcon$1: FontAwesomeIcon,
+};
+
+const dataKeys = {
+  id: false,
+  href: false,
+  name: false,
+  data: true,
+};
 
 class App extends Component {
+
   render() {
-    const pages = pagesData.map((page) => 
+    const serialized = jsxToJson(pagesData);
+    const parsed = jsonToJsx(serialized, componentStore, dataKeys);
+    console.log(pagesData);
+    console.log(parsed);
+    const pages = parsed.map((page) => 
       <Route key={page.id} path={page.href} render={props => (<Page {...props} data={page.data}/>)}/>);
     return (
       <BrowserRouter>
         <div className="App">
           <Header />
 
-          <Navigation menuItems={pagesData.map((page) => {return {id: page.id, href: page.href, name: page.name};})} />
+          <Navigation menuItems={parsed.map((page) => {return {id: page.id, href: page.href, name: page.name};})} />
 
           <Switch>
-            <Route exact path='/' render={props => (<Home {...props} pagesData={pagesData} />)} />
+            <Route exact path='/' render={props => (<Home {...props} pagesData={parsed} />)} />
             <React.Fragment>
               {pages}
             </React.Fragment>
