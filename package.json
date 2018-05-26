@@ -26,5 +26,6 @@
   "devDependencies": {
     "eslint": "^4.19.1",
     "eslint-plugin-react": "^7.8.0"
-  }
+  },
+  "homepage": "http://www.psychologbarlinek.pl/test/"
 }

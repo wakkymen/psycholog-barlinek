@@ -14,7 +14,7 @@ function Page(props){
 }
 
 Page.propTypes = {
-  data: PropTypes.element.isRequired,
+  data: PropTypes.element,
 };
 
 export default Page;

@@ -11,51 +11,67 @@ import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 import faEnvelope from "@fortawesome/fontawesome-free-solid/faEnvelope";
 import faHome from "@fortawesome/fontawesome-free-solid/faHome";
 import faPhone from "@fortawesome/fontawesome-free-solid/faPhone";
-import {jsonToJsx, jsxToJson} from "./jsx-json/jsxToJson";
+import {jsonToJsx, processJson} from "./jsx-json/jsxToJson";
 
 const componentStore = {
   cardStateWrapper: CardStateWrapper,
   fontAwesomeIcon$1: FontAwesomeIcon,
 };
 
-const dataKeys = {
-  id: false,
-  href: false,
-  name: false,
-  data: true,
-};
-
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {pages: pagesData};
+    this.state = {isFetching: true};
+    this.loadPages("http://www.psychologbarlinek.pl/api/public/v1.0.1/pages");
+  }
+
+  loadPages(url) {
+    return fetch(url, {mode: "cors"})
+      .then(response => response.text())
+      .then(responseJSON => this.setState({pages: responseJSON}))
+      .then(() => this.setState({isFetching: false}));
+  }
+  
+
+  async getData(){
+    const data = await this.loadPages("http://www.psychologbarlinek.pl/api/public/v1.0.1/pages");
+    console.log(data);
+  }
 
   render() {
-    const serialized = jsxToJson(pagesData);
-    const parsed = jsonToJsx(serialized, componentStore, dataKeys);
-    console.log(pagesData);
-    console.log(parsed);
-    const pages = parsed.map((page) => 
-      <Route key={page.id} path={page.href} render={props => (<Page {...props} data={page.data}/>)}/>);
-    return (
-      <BrowserRouter>
-        <div className="App">
-          <Header />
+    const {pages} = this.state;
+    if (this.state.isFetching) {
+      return (<div>Is fetching</div>);
+    }
+    else {
+      const processedPages = jsonToJsx(pages, componentStore).map(object => {
+        const {content, ...props} = object;
+        return {props, content: processJson(JSON.parse(content), componentStore)};
+      });
+      const routes = processedPages.map((page) => <Route key={page.props.id} path={page.props.href} render={props => (<Page {...props} data={page.content}/>)}/>);
+      return (
+        <BrowserRouter>
+          <div className="App">
+            <Header />
 
-          <Navigation menuItems={parsed.map((page) => {return {id: page.id, href: page.href, name: page.name};})} />
-
-          <Switch>
-            <Route exact path='/' render={props => (<Home {...props} pagesData={parsed} />)} />
-            <React.Fragment>
-              {pages}
-            </React.Fragment>
-          </Switch>
-          <Footer />
-        </div>
-      </BrowserRouter>
-    );
+            <Navigation menuItems={processedPages.map((page) => {return {id: page.props.id, href: page.props.href, name: page.props.name, role: page.props.role};})} />
+            <Switch>
+              <Route exact path='/' render={props => (<Home {...props} pagesData={processedPages} />)} />
+              <React.Fragment>
+                {routes}
+              </React.Fragment>
+            </Switch>
+            <Footer />
+          </div>
+        </BrowserRouter>
+      );
+    }
   }
 }
 
 const pagesData = [
-  {id:1, href:"/omnie", name:"O mnie", data:(
+  {id:1, href:"/omnie", name:"Chuj", data:(
     <section>
       <h2>Kim jestem?</h2>
       <p>Nazywam się Agnieszka Komorowska, z wykształcenia i zamiłowania jestem psychologiem i socjologiem. Socjologię ukończyłam na Uniwersytecie Szczecińskim, natomiast psychologię na Uniwersytecie SWPS we Wrocławiu. Zdobyte wykształcenie daje mi możliwość szerszego spojrzenia na człowieka znajdującego się w różnych sytuacjach i relacjach społecznych. Ponadto ukończyłam Studium Terapii Dzieci i Młodzieży organizowane przez Dolnośląskie Centrum Psychoterapii we Wrocławiu oraz liczne kursy i szkolenia, które pomogły mi jak najlepiej przygotować się do pracy psychologa – diagnosty i terapeuty.</p>
@@ -78,11 +94,11 @@ const pagesData = [
       </div>
     </section>
   )},
-  {id:2, href:"/artykuły", name:"Artykuły", data:(
+  {id:2, href:"/artykuły", name:"Kurwa", data:(
     <section>
       <h2>Artykuły</h2>
     </section>)},
-  {id:3, href:"/oferta", name:"Oferta", data:(
+  {id:3, href:"/oferta", name:"Dupa", data:(
     <section>
       <h2>Oferta</h2>
       <CardStateWrapper title='Dla rodziców'>
@@ -181,7 +197,7 @@ const pagesData = [
       </CardStateWrapper>
     </section>
   )},
-  {id:4, href:"/cennik", name:"Cennik", data:(
+  {id:4, href:"/cennik", name:"Cipa", data:(
     <section>
       <h2>Cennik</h2>
       <div className="column">
@@ -206,7 +222,7 @@ const pagesData = [
       </div>
     </section>
   )},
-  {id:5, href:"/biofeedback", name:"Biofeedback", data:(
+  {id:5, href:"/biofeedback", name:"Przejebane", data:(
     <section>
       <h2>Biofeedback - na czym polega?</h2>
       <p>EEG Biofeedback  to diagnostyczna i terapeutyczna metoda, oparta na anatomicznej i funkcjonalnej plastyczności mózgu, czyli jego zdolności do trwałych przekształceń.  Poprzez specjalnie uwarunkowany i dostosowany do pacjenta trening poprawia efektywność pracy mózgu, wzmacnia kontrolę nad procesami fizjologicznymi zachodzącymi w organizmie, pomaga się zrelaksować, oraz lepiej radzić sobie w sytuacjach trudnych, pobudza kreatywność i pozytywne myślenie, poprawia samoocenę i koncentrację, a przez to szybkość i efektywność uczenia się. Metoda stwarza możliwość korygowania dysfunkcji mózgowych powstałych w wyniku zaburzeń rozwoju mózgu, chorób oraz urazów mózgu. Wpływa korzystnie na zmiany funkcji poznawczych, zachowanie, emocje, reakcje fizjologiczne wykorzystując funkcje bioelektryczne mózgu przez wyuczenie i wzmacnianie nowych zachowań. Mózg zapamiętuje i odtwarza te reakcje, które są nagradzane. Podczas treningu pozytywnie pobudzony mózg dąży do kolejnych nagród optymalizując swoją pracę po przez uczenie się metodą prób i błędów, efektu i nagrody.</p>

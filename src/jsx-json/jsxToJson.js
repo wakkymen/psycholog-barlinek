@@ -13,20 +13,27 @@ export function jsxToJson(object) {
   });
 }
 
-function processJson(object) {
+export function processJson(object, components) {
   if (Array.isArray(object)){
-    return object.map(element => this.processJson(element));
+    return object.map(element => processJson(element, components));
   }
-  if (object.props.hasOwnProperty("children")) {
+  if (!object.hasOwnProperty("props")) {
+    return object;
+  }
+
+  if (object.type.substr(0, 8) === "function"){
+    object.type = components[object.type.substr(8,1).toLocaleLowerCase()+object.type.substr(9, object.type.length-8)];
+  }
+
+  if (!object.props.hasOwnProperty("children")) {
     return React.createElement(object.type, object.props);
   }
   const {children, ...props} = object.props;
-  return typeof children === "string" ? React.createElement(object.type, props, children) : React.createElement(object.type, props, this.processJson(children));
-
+  return typeof children === "string" ? React.createElement(object.type, props, children) : React.createElement(object.type, props, processJson(children, components));
 }
 
-export function jsonToJsx(jsonString, components, schema) {
-  const parsed = JSON.parse(jsonString, (key, value) => {
+export function jsonToJsx(jsonString, components) {
+  return JSON.parse(jsonString, (key, value) => {
     if (key === "$$typeof" && value === "react" ){
       return Symbol.for("react.element");
     } else if (key === "type" && typeof value === "string" && value.substr(0, 8) === "function") {
@@ -37,17 +44,4 @@ export function jsonToJsx(jsonString, components, schema) {
       return value;
     }
   });
-
-  return parsed.map((object) => {
-    const processedObject = {};
-    for (let key in schema) {
-      if (schema[key]) {
-        processedObject[key] = processJson(object[key]); 
-      } else {
-        processedObject[key] = object[key];
-      }
-    }
-    return processedObject;
-  });
-
 }

@@ -9,10 +9,17 @@ import NavigationMobileStateWrapper from "./NavigationMobileStateWrapper";
  */
 
 function Navigation(props) {
-  const navButtons = props.menuItems.map((menuItem) => 
-    <NavLink key={menuItem.id} to={menuItem.href}>{menuItem.name}</NavLink>
-  );
 
+  const roles = ["about", "updated_content", "offer", "prices", "special", "contact"];
+  const { menuItems } = props;
+  menuItems.sort((a, b) => {
+    const fiCallback = (obj) => {
+      return (elem) => elem === obj.role ? true : false;
+    };
+    return roles.findIndex(fiCallback(a)) - roles.findIndex(fiCallback(b));
+  });
+
+  const navButtons = menuItems.map(menuItem => <NavLink key={menuItem.id} to={menuItem.href}>{menuItem.name}</NavLink>);
   return (
     <nav>
       <MediaQuery maxWidth={899}>
@@ -30,6 +37,7 @@ Navigation.propTypes = {
     id: PropTypes.number.isRequired, 
     name: PropTypes.string.isRequired,
     href: PropTypes.string.isRequired,
+    role: PropTypes.string.isRequired,
   })).isRequired
 };
 
