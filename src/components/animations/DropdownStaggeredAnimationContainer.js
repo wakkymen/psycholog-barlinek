@@ -24,35 +24,31 @@ class DropdownStaggeredAnimationContainer extends React.Component {
         this.setState((prevState) => {return {isMenuOpen: !prevState.isMenuOpen}});
     }
 
-    calculateNextMenuElementPosition(index) {
+    calculateFinalMenuElementPosition(index) {
         return (this.props.menuElementHeight + this.props.menuElementBottomMargin) * index + this.props.topOffset;
     }
 
+    prepareStartStyles() {
+        return this.state.children.map(() => {return {top: 0, opacity: 0}});
+    }
+
+    prepareFinalStyles() {
+        return this.prepareStartStyles().map((i, key) => {return {top: this.calculateFinalMenuElementPosition(key), opacity: 1};});
+    }
+
     render() {
-        const startStyles = [
-            {top: 0, opacity: 0}, 
-            {top: 0, opacity: 0}, 
-            {top: 0, opacity: 0}, 
-            {top: 0, opacity: 0}, 
-            {top: 0, opacity: 0}, 
-            {top: 0, opacity: 0},
-        ];
 
-        const finalStyles = startStyles.map((i, key) => {
-            return {top: (this.props.menuElementHeight + this.props.menuElementBottomMargin) * key + this.props.topOffset, opacity: 1};
-        });
-
-        const isMenuOpen = this.state.isMenuOpen;
+        const { isMenuOpen, children, controlButton } = this.state;
 
         let nextStyles = prevStyles => prevStyles.map((i, key) => {
-            const nextTopValue = isMenuOpen ? spring((this.props.menuElementHeight + this.props.menuElementBottomMargin) * key + this.props.topOffset) : spring(0);
+            const nextTopValue = isMenuOpen ? spring(this.calculateFinalMenuElementPosition(key)) : spring(0);
             const nextOpacity = isMenuOpen ? spring(1) : spring(0);
             return {top: nextTopValue, opacity: nextOpacity};
         });
 
         return (
-            <DropdownStaggeredAnimation controlButton={this.state.controlButton} isOpen={this.state.isMenuOpen} mainButtonHandler={this.toggleMenu} startStyles={startStyles} finalStyles={finalStyles} nextStyles={nextStyles}>
-            {this.state.children}
+            <DropdownStaggeredAnimation controlButton={controlButton} isOpen={isMenuOpen} mainButtonHandler={this.toggleMenu} startStyles={this.prepareStartStyles()} finalStyles={this.prepareFinalStyles()} nextStyles={nextStyles}>
+            {children}
             </DropdownStaggeredAnimation>
         );
     } 

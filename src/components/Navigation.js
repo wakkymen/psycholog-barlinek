@@ -2,7 +2,6 @@ import React from "react";
 import MediaQuery from "react-responsive";
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
-//import NavigationMobileStateWrapper from "./NavigationMobileStateWrapper";
 import DropdownStaggeredAnimationContainer from "./animations/DropdownStaggeredAnimationContainer.js";
 import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 import faBars from "@fortawesome/fontawesome-free-solid/faBars";
@@ -25,7 +24,7 @@ function Navigation(props) {
 
   const navButtons = menuItems.map(menuItem => <NavLink key={menuItem.id} to={menuItem.href}>{menuItem.name}</NavLink>);
 
-  const mobileButtons = [<FontAwesomeIcon key={0} icon={faBars} size="2x" />].concat(navButtons);
+  const mobileButtons = [<FontAwesomeIcon key={0} icon={faBars} size="2x" />, ...navButtons];
   return (
     <nav>
       <MediaQuery maxWidth={899}>
