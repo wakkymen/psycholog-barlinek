@@ -1,15 +1,22 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import NavigationMobile from "./NavigationMobile";
+import DropdownStaggeredAnimation from "./DropdownStaggeredAnimation";
 import { spring } from 'react-motion';
 
 /**
- * Wrapper component for mobile navigation managing the state of mobile nav, especially animations.
+ * Container component for managing state of dropdown staggered animation.
+ * Deep clone of children array is made to prevent bugs when component is remounted.
+ * Similiar logic goes for animation controlling button.
  */
-class NavigationMobileStateWrapper extends React.Component {
+
+class DropdownStaggeredAnimationContainer extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {isMenuOpen: false};
+        this.state = {
+            isMenuOpen: false,
+            children: props.children.filter((value, index) => index > 0),
+            controlButton: props.children.filter((value, index) => index===0).reduce((prev, current) => current),
+        };
         this.toggleMenu = this.toggleMenu.bind(this);
     }
 
@@ -43,22 +50,26 @@ class NavigationMobileStateWrapper extends React.Component {
             return {top: nextTopValue, opacity: nextOpacity};
         });
 
-        return <NavigationMobile buttons={this.props.buttons} isOpen={this.state.isMenuOpen} mainButtonHandler={this.toggleMenu} startStyles={startStyles} finalStyles={finalStyles} nextStyles={nextStyles} />;
+        return (
+            <DropdownStaggeredAnimation controlButton={this.state.controlButton} isOpen={this.state.isMenuOpen} mainButtonHandler={this.toggleMenu} startStyles={startStyles} finalStyles={finalStyles} nextStyles={nextStyles}>
+            {this.state.children}
+            </DropdownStaggeredAnimation>
+        );
     } 
 }
 
-NavigationMobileStateWrapper.defaultProps = {
+DropdownStaggeredAnimationContainer.defaultProps = {
     topOffset: 40,
     menuElementHeight: 51,
     menuElementBottomMargin: 8,
 }
 
 
-NavigationMobileStateWrapper.propTypes = {
-    buttons: PropTypes.arrayOf(PropTypes.element).isRequired,
+DropdownStaggeredAnimationContainer.propTypes = {
+    children: PropTypes.arrayOf(PropTypes.element).isRequired,
     topOffset: PropTypes.number,
     menuElementHeight: PropTypes.number,
     menuElementBottomMargin: PropTypes.number,
 }
 
-export default NavigationMobileStateWrapper;
+export default DropdownStaggeredAnimationContainer;

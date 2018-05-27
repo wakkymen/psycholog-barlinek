@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
-import Header from "./Header";
-import Navigation from "./Navigation";
-import Footer from "./Footer";
-import Home from "./Home";
-import Page from "./Page";
+import Header from "./components/Header";
+import Navigation from "./components/Navigation";
+import Footer from "./components/Footer";
+import Home from "./components/Home";
+import Page from "./components/Page";
 import CardStateWrapper from "./CardStateWrapper";
 import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 import faEnvelope from "@fortawesome/fontawesome-free-solid/faEnvelope";
@@ -32,20 +32,13 @@ class App extends Component {
       .then(responseJSON => this.setState({pages: responseJSON}))
       .then(() => this.setState({isFetching: false}));
   }
-  
-
-  async getData(){
-    const data = await this.loadPages("http://www.psychologbarlinek.pl/api/public/v1.0.1/pages");
-    console.log(data);
-  }
 
   render() {
-    const {pages} = this.state;
     if (this.state.isFetching) {
       return (<div>Is fetching</div>);
     }
     else {
-      const processedPages = jsonToJsx(pages, componentStore).map(object => {
+      const processedPages = jsonToJsx(this.state.pages, componentStore).map(object => {
         const {content, ...props} = object;
         return {props, content: processJson(JSON.parse(content), componentStore)};
       });

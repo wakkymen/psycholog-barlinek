@@ -2,7 +2,10 @@ import React from "react";
 import MediaQuery from "react-responsive";
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
-import NavigationMobileStateWrapper from "./NavigationMobileStateWrapper";
+//import NavigationMobileStateWrapper from "./NavigationMobileStateWrapper";
+import DropdownStaggeredAnimationContainer from "./animations/DropdownStaggeredAnimationContainer.js";
+import FontAwesomeIcon from "@fortawesome/react-fontawesome";
+import faBars from "@fortawesome/fontawesome-free-solid/faBars";
 
 /**
  * Decorational layout component rendering given navigation.
@@ -19,11 +22,18 @@ function Navigation(props) {
     return roles.findIndex(fiCallback(a)) - roles.findIndex(fiCallback(b));
   });
 
+
   const navButtons = menuItems.map(menuItem => <NavLink key={menuItem.id} to={menuItem.href}>{menuItem.name}</NavLink>);
+
+  const mobileButtons = [<FontAwesomeIcon key={0} icon={faBars} size="2x" />].concat(navButtons);
   return (
     <nav>
       <MediaQuery maxWidth={899}>
-        <NavigationMobileStateWrapper buttons={navButtons} />
+        <div className="menuWithHamburger column">
+          <DropdownStaggeredAnimationContainer>
+            {mobileButtons}
+          </DropdownStaggeredAnimationContainer>
+        </div>
       </MediaQuery>
       <MediaQuery minWidth={900}>
         {navButtons}
