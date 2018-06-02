@@ -3,7 +3,7 @@ import { StaggeredMotion } from "react-motion";
 import PropTypes from "prop-types";
 
 /**
- * 
+ * Decorational component rendering dropdown staggered animation.
  */
 
 function DropdownStaggeredAnimation(props) {

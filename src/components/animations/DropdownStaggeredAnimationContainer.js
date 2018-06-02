@@ -7,6 +7,7 @@ import { spring } from 'react-motion';
  * Container component for managing state of dropdown staggered animation.
  * Deep clone of children array is made to prevent bugs when component is remounted.
  * Similiar logic goes for animation controlling button.
+ * TODO something with defaultprops, im not sure what exactly but its ugly as it is now.
  */
 
 class DropdownStaggeredAnimationContainer extends React.Component {

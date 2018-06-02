@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 /**
  * Decorational layout component rendering header.
+ * TODO rendering fetched data instead of simply static shit.
  */
 
 function Header() {

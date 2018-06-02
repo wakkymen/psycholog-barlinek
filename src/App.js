@@ -6,7 +6,6 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
 import Page from "./components/Page";
-import CardStateWrapper from "./CardStateWrapper";
 import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 import faSpinner from "@fortawesome/fontawesome-free-solid/faSpinner";
 import { processJson, jsxToJson } from "./jsx-json/jsxToJson";
@@ -15,12 +14,14 @@ import NewAnimationWrapper from "./NewAnimationWrapper";
 import UnfoldAnimationContainer from "./components/animations/UnfoldAnimationContainer";
 
 const componentStore = {
-  cardStateWrapper: CardStateWrapper,
   fontAwesomeIcon$1: FontAwesomeIcon,
   newAnimationWrapper: NewAnimationWrapper,
   unfoldAnimationContainer: UnfoldAnimationContainer,
 };
 
+/**
+ * Root component, fetches data and renders whole page, very simple.
+ */
 class App extends Component {
   constructor(props) {
     super(props);

@@ -4,6 +4,9 @@ import PropTypes from "prop-types";
 
 /**
  * Decorational layout component rendering basic home page with given subpages on index.
+ * TODO this need to be put in page component in some way.
+ * TODO fetched data would point to related subpages that should be rendered too on that page.
+ * TODO content is already moved to PageData mock.
  */
 
 class Home extends React.Component {

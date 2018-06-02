@@ -1,6 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+/**
+ * HOC giving component with structure like wrapper > title, childrenWrapper example
+ * interface which allows to manage its display by unfold animation.
+ */
 
 export default function withUnfoldAnimationInterface(Component){
   function WithUnfoldAnimationInterface(props) {
@@ -14,13 +18,13 @@ export default function withUnfoldAnimationInterface(Component){
   }
   WithUnfoldAnimationInterface.displayName = `WithUnfoldAnimationInterface(${getDisplayName(Component)})`;
   WithUnfoldAnimationInterface.propTypes = {
-    containerStyle: PropTypes.object,
-    childrenStyle: PropTypes.object,
-    clickHandler: PropTypes.func,
-    isToggled: PropTypes.bool,
-    foldText: PropTypes.string,
-    unfoldText: PropTypes.string,
-    elementRef: PropTypes.func,
+    containerStyle: PropTypes.object.isRequired,
+    childrenStyle: PropTypes.object.isRequired,
+    clickHandler: PropTypes.func.isRequired,
+    isToggled: PropTypes.bool.isRequired,
+    foldText: PropTypes.string.isRequired,
+    unfoldText: PropTypes.string.isRequired,
+    elementRef: PropTypes.func.isRequired,
   };
   return WithUnfoldAnimationInterface;
 }

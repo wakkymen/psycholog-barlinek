@@ -51,7 +51,7 @@ UnfoldAnimation.propTypes = {
   elementRef: PropTypes.func.isRequired,
   foldText: PropTypes.string.isRequired,
   unfoldText: PropTypes.string.isRequired,
-  childrenWrapperType: PropTypes.oneOf(PropTypes.string, PropTypes.func).isRequired,
+  childrenWrapperType: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
 };
 
 export default UnfoldAnimation;

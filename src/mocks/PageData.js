@@ -6,10 +6,10 @@ import faPhone from "@fortawesome/fontawesome-free-solid/faPhone";
 import UnfoldAnimationContainer from "../components/animations/UnfoldAnimationContainer";
 import NewAnimationWrapper from "../NewAnimationWrapper";
 
-
-export const offerData = [
-  
-];
+/**
+ * Mock data for testing purposes mainly or changing data before making serious backend.
+ * If it added itself to repo ill kill myself.
+ */
 
 export const pagesData = [
   {id:1, href:"/omnie", name:"Chuj", data:(
@@ -237,5 +237,12 @@ export const pagesData = [
         </div>
       </div>
     </section>
-  )}
+  )},
+  {id:7, href:"", name:"Chuj", data:(
+    <section className="textContent">
+      <h2><i>Bo w życiu chodzi o ludzi</i></h2>
+      <p>Kocham ludzi! Lubię przebywać z ludźmi, rozmawiać z nimi, a przede wszystkim ich słuchać.  Każda usłyszana historia to osobny człowiek. Człowiek z całym swoim bogactwem, doświadczeniem, przeżyciami, emocjami, problemami…</p>
+      <p>Gabinet psychologiczny „DIAGNOZA & TERAPIA” jest miejscem, gdzie w przyjaznej atmosferze możemy omówić Twoje problemy, Twoich bliskich, dzieci. Gdzie po wstępnej diagnozie zaproponuję najbardziej optymalną terapię. Jeśli będziesz chciał będę Ci towarzyszyć w poradzeniu sobie z nimi, na drodze do zmiany.</p>
+    </section>
+  )},
 ];

@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+/**
+ * Decorational component rendering array of children in a card format.
+ */
 
 function CardNew(props) {
 

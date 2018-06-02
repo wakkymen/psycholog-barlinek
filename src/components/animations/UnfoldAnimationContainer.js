@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import UnfoldAnimation from './UnfoldAnimation';
 
 /**
- * Wrapper component managing the state of unfolding animation.
+ * Container component managing the state of unfolding animation.
+ * TODO decouple this single defaultprop.
  */
 
 class UnfoldAnimationContainer extends React.Component {
@@ -18,8 +19,6 @@ class UnfoldAnimationContainer extends React.Component {
           childrenState = {
             children: props.children.filter((value, index) => index > 2),
             title: props.children.filter((value, index) => index===0).reduce((prev, current) => current),
-            unfoldText: "Pokaż",
-            foldText: "Schowaj",
           };
         } else {
           const {children} = props.children.props.children.props;
@@ -27,8 +26,6 @@ class UnfoldAnimationContainer extends React.Component {
             childrenWrapperType: props.children.type,
             children: children,
             title: props.children.props.title,
-            unfoldText: "Pokaż",
-            foldText: "Schowaj",
           };
         }
         this.state = {
@@ -38,9 +35,9 @@ class UnfoldAnimationContainer extends React.Component {
             elementHeight: 0,
             targetHeight: 0,
             initialHeight: props.startingHeight,
+            unfoldText: "Pokaż",
+            foldText: "Schowaj",
         };
-
-        console.log(this.state);
     }
 
     componentDidMount() {
@@ -76,7 +73,6 @@ class UnfoldAnimationContainer extends React.Component {
     }
 
     render() {
-        const {startingHeight} = this.props;
         return (
           <UnfoldAnimation 
             clickHandler={this.handleClick} 
@@ -101,7 +97,7 @@ UnfoldAnimationContainer.defaultProps = {
 }
 
 UnfoldAnimationContainer.propTypes = {
-  children: PropTypes.oneOf(PropTypes.arrayOf(PropTypes.element), PropTypes.element).isRequired,
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.element), PropTypes.element]).isRequired,
   startingHeight: PropTypes.number,
 }
 

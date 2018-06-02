@@ -2,6 +2,7 @@ import React from "react";
 
 /**
  * Decorational layout component rendering footer.
+ * TODO rendering fetched data instead of simply static shit.
  */
 
 function Footer() {

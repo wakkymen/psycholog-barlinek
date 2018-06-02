@@ -7,7 +7,9 @@ import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 import faBars from "@fortawesome/fontawesome-free-solid/faBars";
 
 /**
- * Decorational layout component rendering given navigation.
+ * Decorational layout component generating navigation from data fetched previously from server.
+ * Supports different navigations for standeard mobile and desktop viewports.
+ * TODO rework elements sorting after move to AWS API.
  */
 
 function Navigation(props) {
