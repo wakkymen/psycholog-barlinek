@@ -13,17 +13,34 @@ class UnfoldAnimationContainer extends React.Component {
         this.handleAnimationCallback = this.handleAnimationCallback.bind(this);
         this.element = null;
         this.setElementRef = element => this.element = element;
+        let childrenState = {};
+        if (Array.isArray(props.children)) {
+          childrenState = {
+            children: props.children.filter((value, index) => index > 2),
+            title: props.children.filter((value, index) => index===0).reduce((prev, current) => current),
+            unfoldText: "Pokaż",
+            foldText: "Schowaj",
+          };
+        } else {
+          const {children} = props.children.props.children.props;
+          childrenState = {
+            childrenWrapperType: props.children.type,
+            children: children,
+            title: props.children.props.title,
+            unfoldText: "Pokaż",
+            foldText: "Schowaj",
+          };
+        }
         this.state = {
+            ...childrenState,
             isToggled: false,
             shouldAnimate: false,
             elementHeight: 0,
             targetHeight: 0,
-            initialHeight: this.props.startingHeight,
-            children: props.children.filter((value, index) => index > 2),
-            title: props.children.filter((value, index) => index===0).reduce((prev, current) => current),
-            unfoldText: props.children.filter((value, index) => index===1).reduce((prev, current) => current),
-            foldText: props.children.filter((value, index) => index===2).reduce((prev, current) => current),
+            initialHeight: props.startingHeight,
         };
+
+        console.log(this.state);
     }
 
     componentDidMount() {
@@ -59,7 +76,7 @@ class UnfoldAnimationContainer extends React.Component {
     }
 
     render() {
-        const {startingHeight, ...props} = this.props;
+        const {startingHeight} = this.props;
         return (
           <UnfoldAnimation 
             clickHandler={this.handleClick} 
@@ -71,7 +88,8 @@ class UnfoldAnimationContainer extends React.Component {
             elementRef={this.setElementRef}
             title={this.state.title}
             unfoldText={this.state.unfoldText}
-            foldText={this.state.foldText}>
+            foldText={this.state.foldText}
+            childrenWrapperType={this.state.childrenWrapperType}>
           {this.state.children}
           </UnfoldAnimation>
         );
@@ -83,7 +101,7 @@ UnfoldAnimationContainer.defaultProps = {
 }
 
 UnfoldAnimationContainer.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  children: PropTypes.oneOf(PropTypes.arrayOf(PropTypes.element), PropTypes.element).isRequired,
   startingHeight: PropTypes.number,
 }
 

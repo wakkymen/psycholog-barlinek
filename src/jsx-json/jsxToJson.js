@@ -2,11 +2,17 @@ import React from "react";
 
 export function jsxToJson(object) {
   return JSON.stringify(object, (key, value) => {
-    if (key === "$$typeof" && typeof value === "symbol" ){
-      return "react";
-    } else if (key === "type" && typeof value === "function") {
+    if (key === "type" && typeof value === "function") {
       return `function${value.name}`;
-    } else {
+    } else if (key === "key"){
+      return;
+    } else if (key === "ref"){
+      return;
+    } else if (key === "_owner"){
+      return;
+    } else if (key === "_store"){
+      return;
+    }else {
       return value;
     }
   });

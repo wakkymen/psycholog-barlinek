@@ -9,11 +9,16 @@ import Page from "./components/Page";
 import CardStateWrapper from "./CardStateWrapper";
 import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 import faSpinner from "@fortawesome/fontawesome-free-solid/faSpinner";
-import { processJson } from "./jsx-json/jsxToJson";
+import { processJson, jsxToJson } from "./jsx-json/jsxToJson";
+import { pagesData} from "./mocks/PageData";
+import NewAnimationWrapper from "./NewAnimationWrapper";
+import UnfoldAnimationContainer from "./components/animations/UnfoldAnimationContainer";
 
 const componentStore = {
   cardStateWrapper: CardStateWrapper,
   fontAwesomeIcon$1: FontAwesomeIcon,
+  newAnimationWrapper: NewAnimationWrapper,
+  unfoldAnimationContainer: UnfoldAnimationContainer,
 };
 
 class App extends Component {
@@ -39,6 +44,7 @@ class App extends Component {
         const {content, ...props} = object;
         return {props, content: processJson(JSON.parse(content), componentStore)};
       });
+      //const processedPages = pagesData;
       const routes = processedPages.map((page) => <Route key={page.props.id} path={page.props.href} render={props => (<Page {...props} data={page.content}/>)}/>);
       return (
         <BrowserRouter>

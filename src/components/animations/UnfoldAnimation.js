@@ -12,24 +12,35 @@ function UnfoldAnimation(props) {
       defaultStyle={{height: props.initialHeight}} 
       style={props.shouldAnimate ? {height: spring(props.targetHeight), opacity: props.isToggled ? spring(1) : spring(0)} : {height: props.initialHeight, opacity: props.isToggled ? 1 : 0}} 
       onRest={props.animationCallback}>
-      {interpolatingStyle =>  <div style={{height: interpolatingStyle.height}} 
-        className={"card"}>
-        <h4>{props.title} 
-          <small>
-            <a onClick={props.clickHandler}>{props.isToggled ? "Schowaj..." : "Czytaj dalej..."}</a>
-          </small>
-        </h4>
-
-        <div ref={props.elementRef} style={{opacity: interpolatingStyle.opacity}}>
-          {props.children}
-        </div>
-      </div>}
+      {(interpolatingStyle) => {
+        const Type = props.childrenWrapperType || "div";
+        if (typeof Type === "function") {
+          return (
+            <Type containerStyle={{height: interpolatingStyle.height}} 
+              childrenStyle={{opacity: interpolatingStyle.opacity}} 
+              title={props.title} 
+              unfoldText={props.unfoldText} 
+              foldText={props.foldText} 
+              clickHandler={props.clickHandler} 
+              elementRef={props.elementRef} 
+              isToggled={props.isToggled}>
+              {props.children}  
+            </Type>);
+        } else {
+          return(<div style={{height: interpolatingStyle.height}}>
+            <h4>{props.title}<small><a onClick={props.clickHandler}>{props.isToggled ? "Schowaj..." : "Pokaż..."}</a></small></h4>
+            <div ref={props.elementRef} style={{opacity: interpolatingStyle.opacity}}>
+              {props.children}
+            </div>
+          </div>);
+        }
+      }}  
     </Motion>
   );
 }
 
 UnfoldAnimation.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.arrayOf(PropTypes.element).isRequired,
   title: PropTypes.string.isRequired,
   clickHandler: PropTypes.func.isRequired,
   isToggled: PropTypes.bool.isRequired,
@@ -38,6 +49,9 @@ UnfoldAnimation.propTypes = {
   initialHeight: PropTypes.number.isRequired,
   animationCallback: PropTypes.func.isRequired,
   elementRef: PropTypes.func.isRequired,
+  foldText: PropTypes.string.isRequired,
+  unfoldText: PropTypes.string.isRequired,
+  childrenWrapperType: PropTypes.oneOf(PropTypes.string, PropTypes.func).isRequired,
 };
 
 export default UnfoldAnimation;
