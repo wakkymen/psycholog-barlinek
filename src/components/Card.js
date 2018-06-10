@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
  * Decorational component rendering array of children in a card format.
  */
 
-function CardNew(props) {
+function Card(props) {
 
   const {title, children, wrapperProps, controls, childrenWrapperProps} = props;
 
@@ -18,7 +18,7 @@ function CardNew(props) {
   );
 }
 
-CardNew.propTypes = {
+Card.propTypes = {
   title: PropTypes.string.isRequired,
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
   wrapperProps: PropTypes.object,
@@ -26,4 +26,4 @@ CardNew.propTypes = {
   childrenWrapperProps: PropTypes.object,
 };
 
-export default CardNew;
+export default Card;

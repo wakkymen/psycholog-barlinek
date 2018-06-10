@@ -1,21 +1,33 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 /**
- * Decorational layout component rendering footer.
- * TODO rendering fetched data instead of simply static shit.
+ * Decorational layout component rendering footer based on fetched data of copyright claim and developer info.
  */
 
-function Footer() {
+function Footer(props) {
+  const {copyright, devInfo} = props.content;
   return (
     <footer>
       <div>
-				2017 Copyright by Gabinet Psychologiczny Diagnoza & Terapia Agnieszka Komorowska
+        {copyright}
       </div>
       <div>
-				Designed by <a href="mailto:kkomorowski@outlook.com">Kacper Komorowski</a>
+        {devInfo.text}<a href={devInfo.linkHref}>{devInfo.linkText}</a>
       </div>
     </footer>
   );
 }
+
+Footer.propTypes = {
+  content: PropTypes.shape({
+    copyright: PropTypes.string.isRequired,
+    devInfo: PropTypes.shape({
+      text: PropTypes.string.isRequired,
+      linkText: PropTypes.string.isRequired,
+      linkHref: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
 
 export default Footer;

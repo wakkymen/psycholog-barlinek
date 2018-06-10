@@ -11,10 +11,10 @@ import React from "react";
 export function jsxToJson(object, store = undefined) {
   return JSON.stringify(object, (key, value) => {
     if (key === "type" && typeof value === "function") {
-      if (store===undefined) {
+      if (store!==undefined) {
         store[value.name] = value;
       }
-      return `function${value.name}`;
+      return value.displayName ? `function${value.displayName}` : `function${value.name}`;
     } else if (key === "key"){
       return;
     } else if (key === "ref"){

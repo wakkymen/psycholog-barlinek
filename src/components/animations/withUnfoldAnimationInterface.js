@@ -16,7 +16,7 @@ export default function withUnfoldAnimationInterface(Component){
     };
     return (<Component {...transformedProps}></Component>);
   }
-  WithUnfoldAnimationInterface.displayName = `WithUnfoldAnimationInterface(${getDisplayName(Component)})`;
+  WithUnfoldAnimationInterface.displayName = `WithUnfoldAnimationInterface${getDisplayName(Component)}`;
   WithUnfoldAnimationInterface.propTypes = {
     containerStyle: PropTypes.object.isRequired,
     childrenStyle: PropTypes.object.isRequired,

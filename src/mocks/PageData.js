@@ -4,12 +4,14 @@ import faEnvelope from "@fortawesome/fontawesome-free-solid/faEnvelope";
 import faHome from "@fortawesome/fontawesome-free-solid/faHome";
 import faPhone from "@fortawesome/fontawesome-free-solid/faPhone";
 import UnfoldAnimationContainer from "../components/animations/UnfoldAnimationContainer";
-import NewAnimationWrapper from "../NewAnimationWrapper";
+import withUnfoldAnimationInterface from "../components/animations/withUnfoldAnimationInterface";
+import Card from "../components/Card";
 
 /**
  * Mock data for testing purposes mainly or changing data before making serious backend.
  * If it added itself to repo ill kill myself.
  */
+const CardWithAnimation = withUnfoldAnimationInterface(Card);
 
 export const pagesData = [
   {id:1, href:"/omnie", name:"Chuj", data:(
@@ -17,7 +19,7 @@ export const pagesData = [
       <h2>Kim jestem?</h2>
       <p>Nazywam się Agnieszka Komorowska, z wykształcenia i zamiłowania jestem psychologiem i socjologiem. Socjologię ukończyłam na Uniwersytecie Szczecińskim, natomiast psychologię na Uniwersytecie SWPS we Wrocławiu. Zdobyte wykształcenie daje mi możliwość szerszego spojrzenia na człowieka znajdującego się w różnych sytuacjach i relacjach społecznych. Ponadto ukończyłam Studium Terapii Dzieci i Młodzieży organizowane przez Dolnośląskie Centrum Psychoterapii we Wrocławiu oraz liczne kursy i szkolenia, które pomogły mi jak najlepiej przygotować się do pracy psychologa – diagnosty i terapeuty.</p>
       <p>Przez wiele lat pracowałam w szkole z dziećmi i młodzieżą. Odbyłam również staż na Oddziale Psychiatrycznym Szpitala Wojewódzkiego w Gorzowie Wlkp. Na co dzień prowadzę prywatną praktykę w ramach Gabinetu psychologicznego „Diagnoza & Terapia”, gdzie udzielam konsultacji psychologicznych, poradnictwa dla osób indywidualnych, oraz par i rodzin. Przyjmuję  pacjentów w każdym wieku – dzieci, młodzież i dorosłych. Jako psycholog pracuję również z pacjentami - osobami starszymi, po wypadkach, urazach, udarach, w chorobach degeneracyjnych mózgu w Dziennym Domu opieki Medycznej, w Szpitalu Barlinek.</p>
-      <p>W ramach gabinetu prywatnego prowadzę terapię EEG Biofeedback, która jest świetnym narzędziem wspomagającym terapię indywidualną pacjentów w wielu zaburzeniach.  <a href="#biofeedback">Więcej o biofeedbacku …..</a></p>
+      <p>W ramach gabinetu prywatnego prowadzę terapię EEG Biofeedback, która jest świetnym narzędziem wspomagającym terapię indywidualną pacjentów w wielu zaburzeniach.  <a href="/biofeedback">Więcej o biofeedbacku …..</a></p>
       <p>W prowadzonej terapii korzystam z narzędzi i podejść różnych szkół psychoterapii (systemowa, poznawczo-behawioralna, psychodynamiczna), tak by jak najlepiej dobrać je do konkretnego problemu z jakim przychodzi pacjent do gabinetu.</p>
       <p>Jako psycholog zajmuję się diagnostyką chorób i zaburzeń z jakimi zgłaszają się do gabinetu pacjenci. Po wstępnym badaniu, konsultacjach wspólnie z pacjentem określam plan terapii najbardziej optymalny w konkretnych problemach. Zależy mi na tym, by terapia była konkretna, nastawiona na realizację założonego celu – rozwiązanie problemu, jak najbardziej skuteczna i przeprowadzona w możliwie najkrótszym czasie.</p>
       <div className="card expanded">
@@ -43,7 +45,7 @@ export const pagesData = [
     <section>
       <h2>Oferta</h2>
       <UnfoldAnimationContainer>
-        <NewAnimationWrapper title='Dla rodziców'>
+        <CardWithAnimation title='Dla rodziców'>
           <div>
             <p>Jeśli Twoje dziecko...</p>
             <ul>
@@ -57,10 +59,10 @@ export const pagesData = [
             </ul>
             <p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, przeprowadzona zostanie wstępna diagnoza oraz zaplanowana terapia najbardziej optymalna dla Państwa dziecka. W ofercie terapeutycznej polecam trening EEG Biofeedback, który zalecany jest w wielu zaburzeniach wieku dziecięcego oraz okresu dorastania poprawiający między innymi koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
           </div>
-        </NewAnimationWrapper>
+        </CardWithAnimation>
       </UnfoldAnimationContainer>
       <UnfoldAnimationContainer>
-        <NewAnimationWrapper title="Dla uczniów i studentów">
+        <CardWithAnimation title="Dla uczniów i studentów">
           <div>
             <p>Jeśli...</p>
             <ul>
@@ -74,10 +76,10 @@ export const pagesData = [
             </ul>
             <p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Ciebie terapię. W razie potrzeby zostanie ona wzbogacona o trening  EEG Biofeedback, który zalecany jest między innymi dla studentów i uczniów – poprawiający koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
           </div>
-        </NewAnimationWrapper>
+        </CardWithAnimation>
       </UnfoldAnimationContainer>
       <UnfoldAnimationContainer>
-        <NewAnimationWrapper title="Dla biznesu">
+        <CardWithAnimation title="Dla biznesu">
           <div>
             <p>Jeśli...</p>
             <ul>
@@ -91,10 +93,10 @@ export const pagesData = [
             </ul>
             <p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Ciebie terapię. W razie potrzeby zostanie ona wzbogacona o trening  EEG Biofeedback, który zalecany jest między innymi dla osób pracujących w biznesie, w stresujących warunkach – poprawiający koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
           </div>
-        </NewAnimationWrapper>
+        </CardWithAnimation>
       </UnfoldAnimationContainer>
       <UnfoldAnimationContainer>
-        <NewAnimationWrapper title="Dla Seniorów">
+        <CardWithAnimation title="Dla Seniorów">
           <div>
             <p>Jeśli...</p>
             <ul>
@@ -106,10 +108,10 @@ export const pagesData = [
             </ul>
             <p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Ciebie terapię. W razie potrzeby zostanie ona wzbogacona o trening EEG Biofeedback, który zalecany jest między innymi dla osób po udarach i urazach głowy, w podeszłym wieku, w chorobach degeneracyjnych mózgu – poprawiający pamięć i koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
           </div>
-        </NewAnimationWrapper>
+        </CardWithAnimation>
       </UnfoldAnimationContainer>
       <UnfoldAnimationContainer>
-        <NewAnimationWrapper title="Dla osób w potrzebie">
+        <CardWithAnimation title="Dla osób w potrzebie">
           <div>
             <p>Jeśli...</p>
             <ul>
@@ -129,10 +131,10 @@ export const pagesData = [
             </ul>
             <p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Ciebie terapię. W razie potrzeby zostanie ona wzbogacona o trening EEG Biofeedback, który zalecany jest między innymi dla osób znajdujących się w szczególnych potrzebach – poprawiający koncentrację, podnoszący samoocenę oraz działający relaksacyjnie.<br/>Serdecznie zapraszam</p>
           </div>
-        </NewAnimationWrapper>
+        </CardWithAnimation>
       </UnfoldAnimationContainer>
       <UnfoldAnimationContainer>
-        <NewAnimationWrapper title="Dla Par">
+        <CardWithAnimation title="Dla Par">
           <div>
             <p>Jeśli...</p>
             <ul>
@@ -146,7 +148,7 @@ export const pagesData = [
             </ul>
             <p>... zapraszam na spotkanie, gdzie wspólnie zastanowimy się nad Waszym problemem, a po wstępnej diagnozie zaplanujemy najbardziej optymalną dla Was terapię.<br/>Serdecznie zapraszam</p>
           </div>
-        </NewAnimationWrapper>
+        </CardWithAnimation>
       </UnfoldAnimationContainer>
     </section>
   )},
