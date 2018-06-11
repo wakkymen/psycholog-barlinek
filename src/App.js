@@ -38,12 +38,12 @@ class App extends Component {
       .then(() => this.setState({isFetching: false}));
   }
 
-  calculateRoutes(pagesArray){
+  calculateRoutes(){
     return this.state.pages.map(page => {
       if (page.index===0) {
-        return <Route exact key={page.id} path={page.href} render={props => (<Page {...props} data={page} otherPages={pagesArray}/>)}/>;
+        return <Route exact key={page.id} path={page.href} render={props => (<Page {...props} data={page} otherPages={this.state.pages}/>)}/>;
       } else {
-        return <Route key={page.id} path={page.href} render={props => (<Page {...props} data={page} otherPages={pagesArray}/>)}/>;
+        return <Route key={page.id} path={page.href} render={props => (<Page {...props} data={page}/>)}/>;
       }
     });
   }
