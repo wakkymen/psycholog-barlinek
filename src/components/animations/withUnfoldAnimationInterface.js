@@ -18,13 +18,13 @@ export default function withUnfoldAnimationInterface(Component){
   }
   WithUnfoldAnimationInterface.displayName = `WithUnfoldAnimationInterface${getDisplayName(Component)}`;
   WithUnfoldAnimationInterface.propTypes = {
-    containerStyle: PropTypes.object.isRequired,
-    childrenStyle: PropTypes.object.isRequired,
-    clickHandler: PropTypes.func.isRequired,
-    isToggled: PropTypes.bool.isRequired,
-    foldText: PropTypes.string.isRequired,
-    unfoldText: PropTypes.string.isRequired,
-    elementRef: PropTypes.func.isRequired,
+    containerStyle: PropTypes.object,
+    childrenStyle: PropTypes.object,
+    clickHandler: PropTypes.func,
+    isToggled: PropTypes.bool,
+    foldText: PropTypes.string,
+    unfoldText: PropTypes.string,
+    elementRef: PropTypes.func,
   };
   return WithUnfoldAnimationInterface;
 }

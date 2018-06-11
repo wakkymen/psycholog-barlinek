@@ -11,7 +11,7 @@ function Card(props) {
 
   return (
     <div className="card" {...wrapperProps}>
-      <h4>{title}{controls}</h4>
+      <h4>{title}{" "}{controls}</h4>
       
       <div {...childrenWrapperProps}>{children}</div>
     </div>

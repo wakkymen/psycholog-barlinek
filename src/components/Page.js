@@ -20,7 +20,7 @@ Page.propTypes = {
   otherPages: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     content: PropTypes.element.isRequired,
-  })).isRequired,
+  })),
 };
 
 export default Page;

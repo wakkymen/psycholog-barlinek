@@ -1,4 +1,5 @@
 import React from "react";
+import shortid from "shortid";
 
 /**
  * Returns stringified JSON representation of react element or element tree ready for sending to backend.
@@ -46,7 +47,7 @@ export function processJson(object, components) {
   if (object.type.substr(0, 8) === "function"){
     object.type = components[object.type.substr(8,1).toLocaleLowerCase()+object.type.substr(9, object.type.length-8)];
   }
-
+  object.props = {key: shortid.generate(), ...object.props};
   if (!object.props.hasOwnProperty("children")) {
     return React.createElement(object.type, object.props);
   }
